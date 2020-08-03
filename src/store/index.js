@@ -11,6 +11,9 @@ const index = new Vuex.Store({
                 logo: require('@/assets/img/logo.png'),
                 github: 'https://github.com',
                 version: 'v1.0.0',
+                description: {
+                    main:'Main description of the demo project. It should be short. It had better be less than one hundred characters.'
+                },
                 readMe: require('@/assets/markdown/demo.md'),
             },
             header: {

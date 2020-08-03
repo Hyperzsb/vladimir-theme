@@ -48,12 +48,6 @@ export default {
 
 @import "../assets/scss/variables";
 
-@mixin mobile {
-    @media screen and (max-width: 992px) {
-        @content;
-    }
-}
-
 .default-icon-color {
     color: rgba(map-get($default-theme-color, 'link-color'), .7);
 }

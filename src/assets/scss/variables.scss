@@ -10,3 +10,9 @@ $default-theme-color: (
         'text-color-light': $oc-gray-7,
         'text-color': $oc-gray-9
 );
+
+@mixin mobile {
+  @media screen and (max-width: 992px) {
+    @content;
+  }
+}

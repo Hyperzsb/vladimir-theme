@@ -20,6 +20,7 @@ const index = new Vuex.Store({
                 aboutPage: true,
             },
             footer: {
+                projectLogo: true,
                 linkListLeft: {
                     title: 'List Left',
                     links: [{
@@ -30,6 +31,9 @@ const index = new Vuex.Store({
                         href: '#'
                     }, {
                         name: 'Link Three',
+                        href: '#'
+                    },{
+                        name: 'Link Four',
                         href: '#'
                     }]
                 },
@@ -45,7 +49,8 @@ const index = new Vuex.Store({
                         name: 'Link Three',
                         href: '#'
                     }]
-                }
+                },
+                recordText: ''
             }
         },
         navItem: -1

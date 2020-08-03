@@ -1,24 +1,11 @@
 # vladimir-theme
 
-## Project setup
-```
-npm install
-```
+**General Project Presentation UI with Vue.js**
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Currently includes:
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- Overview page
+- Demo page
+- About page
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+***Continually updating...***

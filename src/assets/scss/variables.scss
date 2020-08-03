@@ -3,10 +3,10 @@
 $default-theme-color: (
         'base-color': $oc-gray-0,
         'base-color-dark': $oc-gray-2,
-        'link-color': $oc-teal-9,
-        'link-color-light': $oc-teal-7,
         'link-color-lighter': $oc-teal-5,
-        'text-color': $oc-gray-9,
+        'link-color-light': $oc-teal-7,
+        'link-color': $oc-teal-9,
+        'text-color-lighter': $oc-gray-5,
         'text-color-light': $oc-gray-7,
-        'text-color-lighter': $oc-gray-5
+        'text-color': $oc-gray-9
 );

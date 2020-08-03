@@ -32,7 +32,7 @@ const index = new Vuex.Store({
                     }, {
                         name: 'Link Three',
                         href: '#'
-                    },{
+                    }, {
                         name: 'Link Four',
                         href: '#'
                     }]
@@ -51,6 +51,9 @@ const index = new Vuex.Store({
                     }]
                 },
                 recordText: ''
+            },
+            components: {
+                scrollToTop: true
             }
         },
         navItem: -1

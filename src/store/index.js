@@ -14,6 +14,8 @@ const index = new Vuex.Store({
                 readMe: require('@/assets/markdown/demo.md'),
             },
             header: {
+                projectLogo: true,
+                projectName: true,
                 demoPage: true,
                 aboutPage: true,
             },

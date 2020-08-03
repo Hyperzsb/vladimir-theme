@@ -1,0 +1,37 @@
+$base-font: "Noto Serif", "PT Serif", source-han-serif-sc, "Source Han Serif SC", "Source Han Serif CN", "Source Han Serif TC",
+"Source Han Serif TW", "Source Han Serif", "Songti SC", SimSon, serif;
+$code-font: 'Menlo', 'Courier New', 'Monaco', 'Spoqa Han Sans', monospace;
+
+#body {
+  font-family: $base-font;
+}
+
+// Custom Scrollbar
+::selection {
+  background: #ced4da;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #ced4da;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #f8f9fa;
+}
+
+// Bootstrap style override
+
+// Define your variable overrides here
+$enable-shadows: true;
+$enable-gradients: true;
+
+// Include Bootstrap and BootstrapVue SCSS files
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import '../../../node_modules/bootstrap-vue/src/index';

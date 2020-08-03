@@ -1,32 +1,32 @@
 <template>
     <b-navbar tag="header" toggleable="md" sticky
-              class="custom-navbar" :class="{ 'shadow' : this.isShadow }">
-        <b-navbar-brand href="/" :active="true" tag="h1" class="mb-1">
-            <b>{{ ini.project.name }}</b>
+              class="custom-navbar" :class="navbarClass">
+        <b-navbar-brand href="/" :active="true" tag="h1"
+                        class="mb-1 custom-nav-brand" :class="navBrandClass">
+            <img v-if="ini.header.projectLogo" :src="ini.project.logo" :alt="ini.project.name"
+                 class="custom-nav-logo">
+            <b v-if="ini.header.projectName">{{ ini.project.name }}</b>
         </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
-                <b-nav-item to="/overview" replace
-                            :class="{ active: this.navItem === 0 }">
-                    <b class="pb-1 pt-3 pt-lg-1 mr-3 custom-button"
-                       :class="{ 'custom-button-active' : this.navItem === 0 ,
-                                 'custom-button-inactive' : this.navItem !== 0 }">Overview</b>
+                <b-nav-item to="/overview" replace>
+                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(0)">
+                        Overview
+                    </b>
                 </b-nav-item>
-                <b-nav-item v-if="this.ini.header.demoPage" to="/demo" replace
-                            :class="{ active: this.navItem === 1 }">
-                    <b class="pb-1 pt-3 pt-lg-1 mr-3 custom-button"
-                       :class="{ 'custom-button-active' : this.navItem === 1 ,
-                                 'custom-button-inactive' : this.navItem !== 1 }">Demo</b>
+                <b-nav-item v-if="this.ini.header.demoPage" to="/demo" replace>
+                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(1)">
+                        Demo
+                    </b>
                 </b-nav-item>
-                <b-nav-item v-if="this.ini.header.aboutPage" to="/about" replace
-                            :class="{ active: this.navItem === 2 }">
-                    <b class="pb-1 pt-3 pt-lg-1 mr-3 custom-button"
-                       :class="{ 'custom-button-active' : this.navItem === 2 ,
-                                 'custom-button-inactive' : this.navItem !== 2 }">About</b>
+                <b-nav-item v-if="this.ini.header.aboutPage" to="/about" replace>
+                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(2)">
+                        About
+                    </b>
                 </b-nav-item>
                 <b-nav-item :href="ini.project.github" target="_blank">
-                    <b class="pb-1 pt-3 pt-lg-1 mr-3 custom-button custom-button-inactive">
+                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(3)">
                         View in GitHub
                         <b-icon icon="box-arrow-up-right" class="ml-1"></b-icon>
                     </b>
@@ -44,19 +44,62 @@ export default {
     name: "HeaderBar",
     data() {
         return {
-            isShadow: false
+            isScrolled: false
         }
     },
     computed: {
+        navbarClass: function () {
+            if (this.isScrolled)
+                return {
+                    'shadow': true,
+                    'default-bg-color-before': false,
+                    'default-bg-color-after': true
+                }
+            else
+                return {
+                    'shadow': false,
+                    'default-bg-color-before': true,
+                    'default-bg-color-after': false
+                }
+        },
+        navBrandClass: function () {
+            return {
+                'default-link-color': true
+            }
+        },
         ...mapState([
             'ini',
             'navItem'
         ])
     },
     methods: {
+        navItemClass: function (index) {
+            if (index === 3)
+                return {
+                    'custom-button-active': false,
+                    'custom-button-inactive': true,
+                    'default-button-color-active': false,
+                    'default-button-color-inactive': true,
+                }
+
+            if (this.navItem === index)
+                return {
+                    'custom-button-active': true,
+                    'custom-button-inactive': false,
+                    'default-button-color-active': true,
+                    'default-button-color-inactive': false,
+                }
+            else
+                return {
+                    'custom-button-active': false,
+                    'custom-button-inactive': true,
+                    'default-button-color-active': false,
+                    'default-button-color-inactive': true,
+                }
+        },
         changeShadow() {
             let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            this.isShadow = scrollTop > 10;
+            this.isScrolled = scrollTop > 10;
         }
     },
     mounted() {
@@ -71,8 +114,41 @@ export default {
 
 <style lang="scss" scoped>
 
+@import "../assets/scss/variables";
+
+.default-bg-color-before {
+    background: rgba(#ffffff, .5);
+}
+
+.default-bg-color-after {
+    background: rgba(map-get($default-theme-color, 'base-color'), .5);
+}
+
+.default-link-color {
+    color: map-get($default-theme-color, 'link-color');
+}
+
+.default-link-color:hover {
+    color: map-get($default-theme-color, 'link-color-light');
+}
+
+.default-button-color-active {
+    color: map-get($default-theme-color, 'link-color-lighter');
+}
+
+.default-button-color-inactive {
+    color: map-get($default-theme-color, 'link-color');
+}
+
+.default-button-color-inactive:hover {
+    color: map-get($default-theme-color, 'link-color-light');
+}
+
+.default-button-color-inactive:hover::after {
+    border-bottom-color: map-get($default-theme-color, 'link-color-light');
+}
+
 .custom-navbar {
-    background: rgba(#fff, .5);
     transition: 0.25s;
 }
 
@@ -85,6 +161,15 @@ export default {
     right: 0;
     backdrop-filter: blur(10px);
     z-index: -1;
+}
+
+.custom-nav-logo {
+    height: 1.8rem;
+    margin-right: 1rem;
+}
+
+.custom-nav-brand {
+    transition: 0.25s;
 }
 
 .custom-button {
@@ -117,7 +202,6 @@ export default {
 }
 
 .custom-button-inactive {
-    color: #adb5bd;
     transition: color 0.25s;
 }
 
@@ -130,17 +214,9 @@ export default {
     transition: border-color 0.25s ease-out 0.1s, width 0.25s ease-out 0.1s;
 }
 
-.custom-button-inactive:hover {
-    color: #6c757d;
-}
-
 .custom-button-inactive:hover::after {
     width: 100%;
     height: 100%;
-}
-
-.custom-button-inactive:hover::after {
-    border-bottom-color: #6c757d;
     transition: border-color 0.25s ease-out 0.1s, width 0.25s ease-out 0.1s;
 }
 

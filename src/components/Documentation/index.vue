@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>About Page</h1>
+        <h1>Documentation Page</h1>
     </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
         ])
     },
     created() {
-        this.changeNavItem(3);
+        this.changeNavItem(2);
     }
 }
 

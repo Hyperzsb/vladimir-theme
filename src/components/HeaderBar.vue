@@ -20,13 +20,18 @@
                         Demo
                     </b>
                 </b-nav-item>
-                <b-nav-item v-if="ini.components.about" to="/about" replace>
+                <b-nav-item v-if="ini.components.documentation" to="/documentation" replace>
                     <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(2)">
+                        Documentation
+                    </b>
+                </b-nav-item>
+                <b-nav-item v-if="ini.components.about" to="/about" replace>
+                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(3)">
                         About
                     </b>
                 </b-nav-item>
                 <b-nav-item :href="ini.project.github" target="_blank">
-                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(3)">
+                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(4)">
                         View in GitHub
                         <b-icon icon="box-arrow-up-right" class="ml-1"></b-icon>
                     </b>
@@ -74,7 +79,7 @@ export default {
     },
     methods: {
         navItemClass: function (index) {
-            if (index === 3)
+            if (index === 4)
                 return {
                     'custom-button-active': false,
                     'custom-button-inactive': true,

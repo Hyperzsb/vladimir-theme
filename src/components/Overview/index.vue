@@ -4,7 +4,7 @@
             <b-col cols="12">
                 <b-row align-v="center" class="jumbotron-logo-row">
                     <b-col cols="12" md="5" offset-md="2" order="2" order-md="1">
-                        <h1 class="jumbotron-name" :class="mainTextColorClass">
+                        <h1 class="jumbotron-name colorful-text" :class="mainTextColorClass">
                             {{ ini.project.name }}
                         </h1>
                         <h5 class="jumbotron-description" :class="subTextColorClass">
@@ -18,12 +18,13 @@
                 </b-row>
                 <b-row align-v="center" class="jumbotron-button-row">
                     <b-col cols="10" offset="1" md="3" offset-md="3">
-                        <b-button pill block size="lg" variant="outline-success">
+                        <b-button pill block size="lg" :to="getStartTo" variant="outline-success">
                             Get Start
                         </b-button>
                     </b-col>
                     <b-col cols="10" offset="1" md="3" offset-md="0" class="mt-4 mt-md-0">
-                        <b-button pill block size="lg" variant="outline-secondary">
+                        <b-button pill block size="lg" variant="outline-secondary"
+                                  :href="ini.project.github">
                             View in GitHub
                             <b-icon icon="box-arrow-up-right" class="ml-1"></b-icon>
                         </b-button>
@@ -32,17 +33,51 @@
             </b-col>
         </b-row>
         <hr class="custom-hr"/>
-        <b-row class="pt-1 pt-md-4">
-            <b-col cols="12" md="8" offset-md="2">
-                <b-card-group deck class="pt-0 pt-md-4">
+        <b-row class="pt-3 pt-md-4 pb-3">
+            <b-col cols="12" md="8" offset-md="2" class="text-center">
+                <h3 class="custom-section-title" :class="mainTextColorClass">
+                    What is <span class="colorful-text">{{ ini.project.name }}</span>
+                </h3>
+                <div class="custom-section-text" :class="subTextColorClass">
+                    {{ ini.project.description.details }}
+                </div>
+            </b-col>
+        </b-row>
+        <hr class="custom-hr"/>
+        <b-row class="pt-3 pt-md-4 pb-5 pb-md-3">
+            <b-col cols="12" md="8" offset-md="2" class="text-center">
+                <h3 class="custom-section-title" :class="mainTextColorClass">
+                    Why is <span class="colorful-text">{{ ini.project.name }}</span>
+                </h3>
+                <b-card-group deck>
                     <b-card v-for="(feature, index) in ini.project.description.features" :key="index" no-body
-                            class="mt-3 mt-md-0 mb-5 mb-md-0 ml-4 mr-4">
+                            class="custom-card" :class="cardColorClass">
                         <b-card-body>
-                            <b-card-title>{{ feature.name }}</b-card-title>
-                            <b-card-text>{{ feature.details }}</b-card-text>
+                            <b-card-title class="custom-card-title" :class="mainTextColorClass">
+                                {{ feature.name }}
+                            </b-card-title>
+                            <b-card-text class="custom-card-text" :class="subTextColorClass">
+                                {{ feature.details }}
+                            </b-card-text>
                         </b-card-body>
                     </b-card>
                 </b-card-group>
+            </b-col>
+        </b-row>
+        <hr class="custom-hr"/>
+        <b-row class="pt-3 pt-md-4 pb-3">
+            <b-col cols="12" md="8" offset-md="2" class="text-center">
+                <h3 class="custom-section-title" :class="mainTextColorClass">
+                    Get Start <span class="colorful-text">NOW</span>!
+                </h3>
+                <b-button v-if="ini.header.demoPage" to="/demo"
+                          pill size="lg" variant="outline-success" class="m-3">
+                    Get Start
+                </b-button>
+                <b-button v-if="ini.header.documentation" to="/documentation"
+                          pill size="lg" variant="outline-primary" class="m-3">
+                    Documentation
+                </b-button>
             </b-col>
         </b-row>
     </b-container>
@@ -55,6 +90,12 @@ import {mapState, mapMutations} from 'vuex'
 export default {
     name: "index",
     computed: {
+        getStartTo: function () {
+            if (this.ini.header.demoPage)
+                return '/demo';
+            else
+                return '/documentation';
+        },
         mainTextColorClass: function () {
             return {
                 'default-text-color-main': true
@@ -63,6 +104,11 @@ export default {
         subTextColorClass: function () {
             return {
                 'default-text-color-sub': true
+            }
+        },
+        cardColorClass: function () {
+            return {
+                'default-card-color': true
             }
         },
         ...mapState([
@@ -93,6 +139,16 @@ export default {
     color: map-get($default-theme-color, 'text-color-light');
 }
 
+.default-card-color::before, ::after {
+    background-color: map-get($default-theme-color, 'text-color-lighter');
+}
+
+.colorful-text {
+    background: linear-gradient(to right, #7928CA, #FF0080);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
 .custom-hr {
     display: block;
     margin: 1rem auto;
@@ -105,10 +161,12 @@ export default {
 
 .jumbotron-logo-row {
     height: 70vh;
+    margin-left: 5rem;
     text-align: left;
 
     @include mobile {
         height: auto;
+        margin-left: 0;
         text-align: center;
     }
 }
@@ -119,9 +177,6 @@ export default {
     padding: 1rem 0;
     font-size: 5rem;
     font-weight: bold;
-    background: linear-gradient(to right, #7928CA, #FF0080);
-    -webkit-background-clip: text;
-    color: transparent;
 
     @include mobile {
         margin: 0 0;
@@ -158,6 +213,60 @@ export default {
     @include mobile {
         height: auto;
     }
+}
+
+.custom-section-title {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    line-height: 2.5rem;
+    text-decoration-line: underline;
+}
+
+.custom-section-text {
+    padding: 0 2rem;
+    margin-bottom: 0.5rem;
+    line-height: 2rem;
+}
+
+.custom-card {
+    background-color: transparent;
+    border: 0;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 3rem;
+}
+
+.custom-card:last-child {
+
+    @include mobile {
+        margin-bottom: 0;
+    }
+}
+
+.custom-card::before {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    height: 1px;
+    width: 50%;
+    transform: skew(0deg, 6deg);
+}
+
+.custom-card::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    right: 0;
+    height: 1px;
+    width: 50%;
+    transform: skew(0deg, -6deg);
+}
+
+.custom-card-title {
+    margin: 0 0 1.5rem;
+    font-weight: bold;
 }
 
 </style>

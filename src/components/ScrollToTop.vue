@@ -99,20 +99,21 @@ export default {
     }
 }
 
-.custom-icon {
-    height: 3rem;
-    width: 3rem;
-}
-
-.custom-icon::before {
+.scroll-to-top::before {
     content: '';
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    backdrop-filter: blur(2px);
     z-index: -1;
+}
+
+.custom-icon {
+    height: 3rem;
+    width: 3rem;
 }
 
 </style>

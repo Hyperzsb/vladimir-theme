@@ -11,28 +11,28 @@
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
                 <b-nav-item to="/overview" replace>
-                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(0)">
+                    <b class="pb-1 pt-3 pt-md-1 mr-2 custom-button" :class="navItemClass(0)">
                         Overview
                     </b>
                 </b-nav-item>
                 <b-nav-item v-if="ini.components.demo" to="/demo" replace>
-                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(1)">
+                    <b class="pb-1 pt-3 pt-md-1 mr-2 custom-button" :class="navItemClass(1)">
                         Demo
                     </b>
                 </b-nav-item>
                 <b-nav-item v-if="ini.components.documentation" to="/documentation" replace>
-                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(2)">
+                    <b class="pb-1 pt-3 pt-md-1 mr-2 custom-button" :class="navItemClass(2)">
                         Documentation
                     </b>
                 </b-nav-item>
                 <b-nav-item v-if="ini.components.about" to="/about" replace>
-                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(3)">
+                    <b class="pb-1 pt-3 pt-md-1 mr-2 custom-button" :class="navItemClass(3)">
                         About
                     </b>
                 </b-nav-item>
                 <b-nav-item :href="ini.project.github" target="_blank">
-                    <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(4)">
-                        View in GitHub
+                    <b class="pb-1 pt-3 pt-md-1 mr-2 custom-button" :class="navItemClass(4)">
+                        GitHub
                         <b-icon icon="box-arrow-up-right" class="ml-1"></b-icon>
                     </b>
                 </b-nav-item>

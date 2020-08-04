@@ -70,11 +70,11 @@
                 <h3 class="custom-section-title" :class="mainTextColorClass">
                     Get Start <span class="colorful-text">NOW</span>!
                 </h3>
-                <b-button v-if="ini.header.demoPage" to="/demo"
+                <b-button v-if="ini.components.demo" to="/demo"
                           pill size="lg" variant="outline-success" class="m-3">
                     Get Start
                 </b-button>
-                <b-button v-if="ini.header.documentation" to="/documentation"
+                <b-button v-if="ini.components.documentation" to="/documentation"
                           pill size="lg" variant="outline-primary" class="m-3">
                     Documentation
                 </b-button>
@@ -91,7 +91,7 @@ export default {
     name: "index",
     computed: {
         getStartTo: function () {
-            if (this.ini.header.demoPage)
+            if (this.ini.components.demo)
                 return '/demo';
             else
                 return '/documentation';

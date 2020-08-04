@@ -3,9 +3,9 @@
               class="custom-navbar" :class="navbarClass">
         <b-navbar-brand href="/" :active="true" tag="h1"
                         class="mb-1 custom-nav-brand" :class="navBrandClass">
-            <img v-if="ini.header.projectLogo" :src="ini.project.logo" :alt="ini.project.name"
+            <img v-if="ini.header.logo" :src="ini.project.logo" :alt="ini.project.name"
                  class="custom-nav-logo">
-            <b v-if="ini.header.projectName">{{ ini.project.name }}</b>
+            <b v-if="ini.header.name">{{ ini.project.name }}</b>
         </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
@@ -15,12 +15,12 @@
                         Overview
                     </b>
                 </b-nav-item>
-                <b-nav-item v-if="this.ini.header.demoPage" to="/demo" replace>
+                <b-nav-item v-if="ini.components.demo" to="/demo" replace>
                     <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(1)">
                         Demo
                     </b>
                 </b-nav-item>
-                <b-nav-item v-if="this.ini.header.aboutPage" to="/about" replace>
+                <b-nav-item v-if="ini.components.about" to="/about" replace>
                     <b class="pb-1 pt-3 pt-md-1 mr-3 custom-button" :class="navItemClass(2)">
                         About
                     </b>

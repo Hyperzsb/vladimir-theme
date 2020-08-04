@@ -29,11 +29,8 @@ const index = new Vuex.Store({
                 readMe: require('@/assets/markdown/demo.md'),
             },
             header: {
-                projectLogo: true,
-                projectName: true,
-                demoPage: true,
-                documentation: true,
-                aboutPage: true,
+                logo: true,
+                name: true
             },
             footer: {
                 projectLogo: true,
@@ -69,6 +66,9 @@ const index = new Vuex.Store({
                 recordText: ''
             },
             components: {
+                demo: true,
+                documentation: true,
+                about: true,
                 scrollToTop: true
             }
         },

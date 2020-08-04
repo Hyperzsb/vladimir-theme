@@ -16,13 +16,13 @@ let routes = [{
     component: Overview
 }]
 
-if (store.state.ini.header.demoPage)
+if (store.state.ini.components.demo)
     routes.push({
         path: '/demo',
         component: Demo
     })
 
-if (store.state.ini.header.aboutPage)
+if (store.state.ini.components.about)
     routes.push({
         path: '/about',
         component: About

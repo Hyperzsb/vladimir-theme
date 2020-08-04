@@ -33,7 +33,7 @@ const index = new Vuex.Store({
                 name: true
             },
             footer: {
-                projectLogo: true,
+                logo: true,
                 linkListLeft: {
                     title: 'List Left',
                     links: [{

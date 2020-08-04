@@ -2,57 +2,65 @@
     <b-container tag="footer" fluid class="text-center custom-footer" :class="footerColorClass">
         <b-row class="pt-5 pb-1">
             <b-col cols="12" class="p-3">
-                <b-row v-if="!ini.footer.projectLogo" class="mt-3 mb-5">
-                    <b-col offset="2" cols="4" offset-md="3" md="3" class="pb-1 pt-1">
-                        <div class="pb-1 font-weight-bolder font-size-101"
-                             :class="mainTextColorClass">
-                            {{ ini.footer.linkListLeft.title }}
-                        </div>
-                        <div v-for="(link, index) in ini.footer.linkListLeft.links" :key="index"
-                             class="pt-1">
-                            <b-link :href="link.href" class="custom-link" :class="linkColorClass">
-                                {{ link.name }}
-                            </b-link>
+                <b-row v-if="!ini.footer.logo" class="pt-3 pb-3 pl-4 pl-md-0 pr-4 pr-md-0 mt-3 mb-5 text-left">
+                    <b-col cols="6" offset-md="3" md="3" class="pb-1 pt-1">
+                        <div class="custom-footer-container">
+                            <div class="pb-1 font-weight-bolder font-size-101"
+                                 :class="mainTextColorClass">
+                                {{ ini.footer.linkListLeft.title }}
+                            </div>
+                            <div v-for="(link, index) in ini.footer.linkListLeft.links" :key="index"
+                                 class="pt-1 pl-3">
+                                <b-link :href="link.href" class="custom-link" :class="linkColorClass">
+                                    {{ link.name }}
+                                </b-link>
+                            </div>
                         </div>
                     </b-col>
-                    <b-col cols="4" md="3" class="pb-1 pt-1">
-                        <div class="pb-1 font-weight-bolder font-size-101"
-                             :class="mainTextColorClass">
-                            {{ ini.footer.linkListRight.title }}
-                        </div>
-                        <div v-for="(link, index) in ini.footer.linkListRight.links" :key="index"
-                             class="pt-1">
-                            <b-link :href="link.href" class="custom-link" :class="linkColorClass">
-                                {{ link.name }}
-                            </b-link>
+                    <b-col cols="6" md="3" class="pb-1 pt-1">
+                        <div class="custom-footer-container">
+                            <div class="pb-1 font-weight-bolder font-size-101"
+                                 :class="mainTextColorClass">
+                                {{ ini.footer.linkListRight.title }}
+                            </div>
+                            <div v-for="(link, index) in ini.footer.linkListRight.links" :key="index"
+                                 class="pt-1 pl-3">
+                                <b-link :href="link.href" class="custom-link" :class="linkColorClass">
+                                    {{ link.name }}
+                                </b-link>
+                            </div>
                         </div>
                     </b-col>
                 </b-row>
-                <b-row v-if="ini.footer.projectLogo" align-v="center" class="mt-3 mb-5">
+                <b-row v-if="ini.footer.logo" align-v="center" class="mt-3 mb-5">
                     <b-col cols="12" order-md="1" md="5" offset-md="2" order="2">
-                        <b-row class="pt-3 pb-3 pl-4 pl-md-0 pr-4 pr-md-0">
+                        <b-row class="pt-3 pb-3 pl-4 pl-md-0 pr-4 pr-md-0 text-left">
                             <b-col cols="6">
-                                <div class="pb-1 font-weight-bolder font-size-101"
-                                     :class="mainTextColorClass">
-                                    {{ ini.footer.linkListLeft.title }}
-                                </div>
-                                <div v-for="(link, index) in ini.footer.linkListLeft.links" :key="index"
-                                     class="pt-1">
-                                    <b-link :href="link.href" class="custom-link" :class="linkColorClass">
-                                        {{ link.name }}
-                                    </b-link>
+                                <div class="custom-footer-container">
+                                    <div class="pb-1 font-weight-bolder font-size-101"
+                                         :class="mainTextColorClass">
+                                        {{ ini.footer.linkListLeft.title }}
+                                    </div>
+                                    <div v-for="(link, index) in ini.footer.linkListLeft.links" :key="index"
+                                         class="pt-1 pl-3">
+                                        <b-link :href="link.href" class="custom-link" :class="linkColorClass">
+                                            {{ link.name }}
+                                        </b-link>
+                                    </div>
                                 </div>
                             </b-col>
                             <b-col cols="6">
-                                <div class="pb-1 font-weight-bolder font-size-101"
-                                     :class="mainTextColorClass">
-                                    {{ ini.footer.linkListRight.title }}
-                                </div>
-                                <div v-for="(link, index) in ini.footer.linkListRight.links" :key="index"
-                                     class="pt-1">
-                                    <b-link :href="link.href" class="custom-link" :class="linkColorClass">
-                                        {{ link.name }}
-                                    </b-link>
+                                <div class="custom-footer-container">
+                                    <div class="pb-1 font-weight-bolder font-size-101"
+                                         :class="mainTextColorClass">
+                                        {{ ini.footer.linkListRight.title }}
+                                    </div>
+                                    <div v-for="(link, index) in ini.footer.linkListRight.links" :key="index"
+                                         class="pt-1 pl-3">
+                                        <b-link :href="link.href" class="custom-link" :class="linkColorClass">
+                                            {{ link.name }}
+                                        </b-link>
+                                    </div>
                                 </div>
                             </b-col>
                         </b-row>
@@ -116,13 +124,13 @@ export default {
             }
         },
         footnoteCols: function () {
-            if (this.ini.footer.projectLogo)
+            if (this.ini.footer.logo)
                 return 8;
             else
                 return 6;
         },
         footnoteOffset: function () {
-            if (this.ini.footer.projectLogo)
+            if (this.ini.footer.logo)
                 return 2;
             else
                 return 3;
@@ -174,6 +182,11 @@ export default {
 .custom-footer {
     margin-top: 35px;
     box-shadow: 0 -15px 20px #dee2e6;
+}
+
+.custom-footer-container {
+    width: max-content;
+    margin: auto;
 }
 
 .custom-link {

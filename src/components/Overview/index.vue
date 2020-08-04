@@ -13,16 +13,16 @@
                         <b-badge pill class="jumbotron-version">{{ ini.project.version }}</b-badge>
                     </b-col>
                     <b-col cols="12" md="3" order="1" order-md="2" class="pt-3 pt-md-0">
-                        <b-img center :src="ini.project.logo" :alt="ini.project.name"></b-img>
+                        <b-img center :src="ini.project.logo" :alt="ini.project.name" :title="ini.project.name"></b-img>
                     </b-col>
                 </b-row>
                 <b-row align-v="center" class="jumbotron-button-row">
-                    <b-col cols="10" offset="1" md="2" offset-md="4">
+                    <b-col cols="10" offset="1" md="3" offset-md="3">
                         <b-button pill block size="lg" variant="outline-success">
                             Get Start
                         </b-button>
                     </b-col>
-                    <b-col cols="10" offset="1" md="2" offset-md="0" class="mt-4 mt-md-0">
+                    <b-col cols="10" offset="1" md="3" offset-md="0" class="mt-4 mt-md-0">
                         <b-button pill block size="lg" variant="outline-secondary">
                             View in GitHub
                             <b-icon icon="box-arrow-up-right" class="ml-1"></b-icon>
@@ -32,6 +32,19 @@
             </b-col>
         </b-row>
         <hr class="custom-hr"/>
+        <b-row class="pt-1 pt-md-4">
+            <b-col cols="12" md="8" offset-md="2">
+                <b-card-group deck class="pt-0 pt-md-4">
+                    <b-card v-for="(feature, index) in ini.project.description.features" :key="index" no-body
+                            class="mt-3 mt-md-0 mb-5 mb-md-0 ml-4 mr-4">
+                        <b-card-body>
+                            <b-card-title>{{ feature.name }}</b-card-title>
+                            <b-card-text>{{ feature.details }}</b-card-text>
+                        </b-card-body>
+                    </b-card>
+                </b-card-group>
+            </b-col>
+        </b-row>
     </b-container>
 </template>
 

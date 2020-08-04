@@ -12,7 +12,17 @@ const index = new Vuex.Store({
                 github: 'https://github.com',
                 version: 'v1.0.0',
                 description: {
-                    main:'Main description of the demo project. It should be short. It had better be less than one hundred characters.'
+                    main: 'Main description of the demo project. It should be short. It had better be less than one hundred characters.',
+                    features: [{
+                        name: 'Feature One',
+                        details: 'Details for Feature One. It should be somewhat longer, but not longer than two hundred characters.'
+                    }, {
+                        name: 'Feature Two',
+                        details: 'Details for Feature Two. Maybe there are some pictures will be better.'
+                    }, {
+                        name: 'Feature Three',
+                        details: 'Details for Feature Three. How can the cards layout as the same height?'
+                    }]
                 },
                 readMe: require('@/assets/markdown/demo.md'),
             },

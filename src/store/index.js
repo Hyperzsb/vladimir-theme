@@ -14,7 +14,7 @@ const index = new Vuex.Store({
                 description: {
                     main: 'Main description of the demo project. It should be short. It had better be less than one hundred characters.',
                     details: 'Detailed description of the demo project. This section allows much longer text and maybe some pictures. ' +
-                        'Characters here ought to be no less than three hundred.',
+                        'Characters here ought to be no less than five hundred.',
                     features: [{
                         name: 'Feature One',
                         details: 'Details for Feature One. It should be somewhat longer, but not longer than two hundred characters.'

@@ -13,7 +13,8 @@
                         <b-badge pill class="jumbotron-version">{{ ini.project.version }}</b-badge>
                     </b-col>
                     <b-col cols="12" md="3" order="1" order-md="2" class="pt-3 pt-md-0">
-                        <b-img center :src="ini.project.logo" :alt="ini.project.name" :title="ini.project.name"></b-img>
+                        <b-img center class="custom-img"
+                               :src="ini.project.logo" :alt="ini.project.name" :title="ini.project.name"></b-img>
                     </b-col>
                 </b-row>
                 <b-row align-v="center" class="jumbotron-button-row">
@@ -65,10 +66,10 @@
             </b-col>
         </b-row>
         <hr class="custom-hr"/>
-        <b-row class="pt-3 pt-md-4 pb-3">
+        <b-row class="pt-3 pt-md-4 pb-5">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
                 <h3 class="custom-section-title" :class="mainTextColorClass">
-                    Get Start <span class="colorful-text">NOW</span>!
+                    Get Start <span class="colorful-text">NOW</span>
                 </h3>
                 <b-button v-if="ini.components.demo" to="/demo"
                           pill size="lg" variant="outline-success" class="m-3">
@@ -151,7 +152,7 @@ export default {
 
 .custom-hr {
     display: block;
-    margin: 1rem auto;
+    margin: 3rem auto;
     width: 80%;
 
     @include mobile {
@@ -159,14 +160,16 @@ export default {
     }
 }
 
+.custom-img {
+    height: 30vh;
+}
+
 .jumbotron-logo-row {
     height: 70vh;
-    margin-left: 5rem;
-    text-align: left;
+    text-align: right;
 
     @include mobile {
         height: auto;
-        margin-left: 0;
         text-align: center;
     }
 }
@@ -235,6 +238,7 @@ export default {
     margin-left: 2rem;
     margin-right: 2rem;
     margin-bottom: 3rem;
+    line-height: 2rem;
 }
 
 .custom-card:last-child {

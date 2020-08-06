@@ -70,13 +70,6 @@ export default {
 }
 
 .scroll-to-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    bottom: 10vh;
-    right: 5vw;
     height: 3rem;
     width: 3rem;
     text-align: center;
@@ -91,11 +84,6 @@ export default {
 
     &:active {
         box-shadow: 0 0 0.7rem #868e96;
-    }
-
-    @include mobile {
-        bottom: 5vh;
-        right: 10vw;
     }
 }
 

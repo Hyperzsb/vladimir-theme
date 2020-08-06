@@ -5,7 +5,6 @@
             <router-view></router-view>
         </transition>
         <footer-bar/>
-        <scroll-to-top v-if="ini.components.scrollToTop"/>
     </div>
 </template>
 
@@ -15,7 +14,6 @@ import {mapState} from 'vuex'
 
 import HeaderBar from "@/components/HeaderBar";
 import FooterBar from "@/components/FooterBar";
-import ScrollToTop from '@/components/ScrollToTop'
 
 export default {
     name: 'App',
@@ -26,8 +24,7 @@ export default {
     },
     components: {
         HeaderBar,
-        FooterBar,
-        ScrollToTop
+        FooterBar
     }
 }
 

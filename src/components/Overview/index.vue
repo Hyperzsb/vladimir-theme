@@ -81,12 +81,16 @@
                 </b-button>
             </b-col>
         </b-row>
+        <div class="fixed-toolbar">
+            <scroll-to-top v-if="ini.components.scrollToTop"/>
+        </div>
     </b-container>
 </template>
 
 <script>
 
 import {mapState, mapMutations} from 'vuex'
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default {
     name: "index",
@@ -123,6 +127,9 @@ export default {
     },
     created() {
         this.changeNavItem(0);
+    },
+    components: {
+        ScrollToTop
     }
 }
 

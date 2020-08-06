@@ -6,8 +6,15 @@
                 </div>
             </b-col>
         </b-row>
-        <div>
-            {{ tocList }}
+        <b-sidebar id="toc-sidebar" title="Content" shadow backdrop backdrop-variant="dark"
+                   :visible="sidebarVisible">
+            <div id="toc-container" v-html="tocHtml" class="pl-3"></div>
+        </b-sidebar>
+        <div class="fixed-toolbar">
+            <scroll-to-top v-if="ini.components.scrollToTop" class="mb-3"/>
+            <div class="sidebar-toggle" @click="sidebarVisible=!sidebarVisible">
+                <b-icon icon="justify" class="rounded-circle p-2 custom-icon" :class="iconColorClass"></b-icon>
+            </div>
         </div>
     </b-container>
 </template>
@@ -17,7 +24,10 @@
 import Vue from 'vue'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-light.css'
-import {mapMutations} from 'vuex'
+
+import {mapState, mapMutations} from 'vuex'
+
+import ScrollToTop from "@/components/ScrollToTop";
 
 Vue.directive('highlight', function (el) {
     let blocks = el.querySelectorAll('pre code');
@@ -26,13 +36,28 @@ Vue.directive('highlight', function (el) {
     })
 })
 
+let externalTocHtml = '';
+
 export default {
     name: "index",
     data() {
         return {
             markDownText: '',
-            tocList: ''
+            sidebarVisible: false
         }
+    },
+    computed: {
+        tocHtml: function () {
+            return externalTocHtml;
+        },
+        iconColorClass: function () {
+            return {
+                'default-icon-color': true
+            }
+        },
+        ...mapState([
+            'ini'
+        ])
     },
     methods: {
         ...mapMutations([
@@ -105,14 +130,15 @@ export default {
             .use(markdownItSub)
             .use(markdownItSup)
             .use(markdownItTocAndAnchor, {
+                tocClassName: 'markdown-toc',
                 anchorLinkSymbol: '¶',
                 anchorLinkBefore: false,
-                anchorClassName: 'markdown-anchor default-markdown-a-color',
+                anchorClassName: 'markdown-a markdown-anchor default-markdown-a-color',
             });
 
         markDownIt.set({
             tocCallback: function (tocMarkdown, tocArray, tocHtml) {
-                console.log(tocHtml);
+                externalTocHtml = tocHtml;
             }
         });
 
@@ -123,12 +149,33 @@ export default {
         for (let i = 0; i < anchors.length; i++) {
             anchors.item(i).onclick = function () {
                 window.scrollTo({
-                    top: anchors.item(i).offsetTop,
+                    top: document.getElementById(anchors.item(i).attributes['href'].value.substr(1)).offsetTop,
                     behavior: "smooth"
                 });
                 return false;
             }
         }
+
+        function addTocClickListener(node) {
+            if (node.tagName.toString() === 'A') {
+                node.onclick = function () {
+                    window.scrollTo({
+                        top: document.getElementById(node.attributes['href'].value.substr(1)).offsetTop,
+                        behavior: "smooth"
+                    });
+                    return false;
+                }
+                return null;
+            }
+
+            for (let i = 0; i < node.children.length; i++)
+                addTocClickListener(node.children[i]);
+        }
+
+        addTocClickListener(document.getElementById('toc-container'));
+    },
+    components: {
+        ScrollToTop
     }
 }
 
@@ -138,12 +185,52 @@ export default {
 
 @import "src/assets/scss/variables";
 
+.default-icon-color {
+    color: map-get($default-theme-color, 'base-color');
+    background-color: rgba(map-get($default-theme-color, 'link-color'), .7);
+}
+
 .markdown-container {
     line-height: 2rem;
 
     @include mobile {
         line-height: 1.8rem;
     }
+}
+
+.sidebar-toggle {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 0 0.7rem #868e96;
+    cursor: pointer;
+    transition: 0.25s;
+
+    &:hover {
+        box-shadow: 0 0 1.3rem #868e96;
+    }
+
+    &:active {
+        box-shadow: 0 0 0.7rem #868e96;
+    }
+}
+
+.sidebar-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 50%;
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
+.custom-icon {
+    height: 3rem;
+    width: 3rem;
 }
 
 </style>

@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 const index = new Vuex.Store({
     state: {
-        ini: {
+        config: {
             project: {
                 name: 'Demo Project',
                 logo: require('@/assets/img/logo.png'),
@@ -66,10 +66,23 @@ const index = new Vuex.Store({
                 recordText: ''
             },
             components: {
-                demo: true,
-                documentation: true,
-                about: true,
-                scrollToTop: true
+                overview: {
+                    scrollToTop: true
+                },
+                demo: {
+                    self: true,
+                    scrollToTop: true,
+                    toc: true
+                },
+                documentation: {
+                    self: true,
+                    scrollToTop: true,
+                    toc: true
+                },
+                about: {
+                    self: true,
+                    scrollToTop: true
+                },
             }
         },
         navItem: -1

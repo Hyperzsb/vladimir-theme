@@ -17,19 +17,19 @@ let routes = [{
     component: Overview
 }]
 
-if (store.state.ini.components.demo)
+if (store.state.config.components.demo.self)
     routes.push({
         path: '/demo',
         component: Demo
     })
 
-if (store.state.ini.components.documentation)
+if (store.state.config.components.documentation.self)
     routes.push({
         path: '/documentation',
         component: Documentation
     })
 
-if (store.state.ini.components.about)
+if (store.state.config.components.about.self)
     routes.push({
         path: '/about',
         component: About

@@ -19,7 +19,7 @@ export default {
     name: 'App',
     computed: {
         ...mapState([
-            'ini'
+            'config'
         ])
     },
     components: {

@@ -33,6 +33,8 @@ code {
   background: #f8f9fa;
 }
 
+// Fixed toolbar class
+
 .fixed-toolbar {
   display: flex;
   flex-direction: column;
@@ -48,7 +50,7 @@ code {
   }
 }
 
-// Markdown class
+// Markdown classes
 
 .default-markdown-h-color {
   color: map-get($default-theme-color, 'text-color');

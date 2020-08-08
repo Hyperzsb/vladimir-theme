@@ -2,14 +2,14 @@
     <b-container tag="footer" fluid class="text-center custom-footer" :class="footerColorClass">
         <b-row class="pt-5 pb-1">
             <b-col cols="12" class="p-3">
-                <b-row v-if="!ini.footer.logo" class="pt-3 pb-3 pl-4 pl-md-0 pr-4 pr-md-0 mt-3 mb-5 text-left">
+                <b-row v-if="!config.footer.logo" class="pt-3 pb-3 pl-4 pl-md-0 pr-4 pr-md-0 mt-3 mb-5 text-left">
                     <b-col cols="6" offset-md="3" md="3" class="pb-1 pt-1">
                         <div class="custom-footer-container">
                             <div class="pb-1 font-weight-bolder font-size-101"
                                  :class="mainTextColorClass">
-                                {{ ini.footer.linkListLeft.title }}
+                                {{ config.footer.linkListLeft.title }}
                             </div>
-                            <div v-for="(link, index) in ini.footer.linkListLeft.links" :key="index"
+                            <div v-for="(link, index) in config.footer.linkListLeft.links" :key="index"
                                  class="pt-1 pl-3">
                                 <b-link :href="link.href" class="custom-link" :class="linkColorClass">
                                     {{ link.name }}
@@ -21,9 +21,9 @@
                         <div class="custom-footer-container">
                             <div class="pb-1 font-weight-bolder font-size-101"
                                  :class="mainTextColorClass">
-                                {{ ini.footer.linkListRight.title }}
+                                {{ config.footer.linkListRight.title }}
                             </div>
-                            <div v-for="(link, index) in ini.footer.linkListRight.links" :key="index"
+                            <div v-for="(link, index) in config.footer.linkListRight.links" :key="index"
                                  class="pt-1 pl-3">
                                 <b-link :href="link.href" class="custom-link" :class="linkColorClass">
                                     {{ link.name }}
@@ -32,16 +32,16 @@
                         </div>
                     </b-col>
                 </b-row>
-                <b-row v-if="ini.footer.logo" align-v="center" class="mt-3 mb-5">
+                <b-row v-if="config.footer.logo" align-v="center" class="mt-3 mb-5">
                     <b-col cols="12" order-md="1" md="5" offset-md="2" order="2">
                         <b-row class="pt-3 pb-3 pl-4 pl-md-0 pr-4 pr-md-0 text-left">
                             <b-col cols="6">
                                 <div class="custom-footer-container">
                                     <div class="pb-1 font-weight-bolder font-size-101"
                                          :class="mainTextColorClass">
-                                        {{ ini.footer.linkListLeft.title }}
+                                        {{ config.footer.linkListLeft.title }}
                                     </div>
-                                    <div v-for="(link, index) in ini.footer.linkListLeft.links" :key="index"
+                                    <div v-for="(link, index) in config.footer.linkListLeft.links" :key="index"
                                          class="pt-1 pl-3">
                                         <b-link :href="link.href" class="custom-link" :class="linkColorClass">
                                             {{ link.name }}
@@ -53,9 +53,9 @@
                                 <div class="custom-footer-container">
                                     <div class="pb-1 font-weight-bolder font-size-101"
                                          :class="mainTextColorClass">
-                                        {{ ini.footer.linkListRight.title }}
+                                        {{ config.footer.linkListRight.title }}
                                     </div>
-                                    <div v-for="(link, index) in ini.footer.linkListRight.links" :key="index"
+                                    <div v-for="(link, index) in config.footer.linkListRight.links" :key="index"
                                          class="pt-1 pl-3">
                                         <b-link :href="link.href" class="custom-link" :class="linkColorClass">
                                             {{ link.name }}
@@ -66,7 +66,7 @@
                         </b-row>
                     </b-col>
                     <b-col cols="12" order="1" md="3" order-md="2" class="mb-5 mb-md-0">
-                        <b-img center :src="ini.project.logo" :alt="ini.project.name" style="height: 10rem"></b-img>
+                        <b-img center :src="config.project.logo" :alt="config.project.name" style="height: 10rem"></b-img>
                     </b-col>
                 </b-row>
                 <b-row class="pt-3">
@@ -78,14 +78,14 @@
                                 Vue.js
                             </b-link>
                             <br/>
-                            Currently <b>{{ ini.project.version }}</b> Code licensed&nbsp;
+                            Currently <b>{{ config.project.version }}</b> Code licensed&nbsp;
                             <b-link href="https://www.mit-license.org/" class="custom-link" :class="linkColorClass">
                                 MIT
                             </b-link>
-                            <div v-if="ini.footer.recordText" class="pt-3">
+                            <div v-if="config.footer.recordText" class="pt-3">
                                 <b-link href="https://blog.hyperzsb.tech/www.beian.miit.gov.cn"
                                         class="custom-link" :class="linkColorClass">
-                                    {{ ini.footer.recordText }}
+                                    {{ config.footer.recordText }}
                                 </b-link>
                             </div>
                         </div>
@@ -124,19 +124,19 @@ export default {
             }
         },
         footnoteCols: function () {
-            if (this.ini.footer.logo)
+            if (this.config.footer.logo)
                 return 8;
             else
                 return 6;
         },
         footnoteOffset: function () {
-            if (this.ini.footer.logo)
+            if (this.config.footer.logo)
                 return 2;
             else
                 return 3;
         },
         ...mapState([
-            'ini'
+            'config'
         ])
     }
 }

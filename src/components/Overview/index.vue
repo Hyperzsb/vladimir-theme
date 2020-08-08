@@ -5,16 +5,17 @@
                 <b-row align-v="center" class="jumbotron-logo-row">
                     <b-col cols="12" md="5" offset-md="2" order="2" order-md="1">
                         <h1 class="jumbotron-name colorful-text" :class="mainTextColorClass">
-                            {{ ini.project.name }}
+                            {{ config.project.name }}
                         </h1>
                         <h5 class="jumbotron-description" :class="subTextColorClass">
-                            {{ ini.project.description.main }}
+                            {{ config.project.description.main }}
                         </h5>
-                        <b-badge pill class="jumbotron-version">{{ ini.project.version }}</b-badge>
+                        <b-badge pill class="jumbotron-version">{{ config.project.version }}</b-badge>
                     </b-col>
                     <b-col cols="12" md="3" order="1" order-md="2" class="pt-3 pt-md-0">
                         <b-img center class="custom-img"
-                               :src="ini.project.logo" :alt="ini.project.name" :title="ini.project.name"></b-img>
+                               :src="config.project.logo" :alt="config.project.name"
+                               :title="config.project.name"></b-img>
                     </b-col>
                 </b-row>
                 <b-row align-v="center" class="jumbotron-button-row">
@@ -25,7 +26,7 @@
                     </b-col>
                     <b-col cols="10" offset="1" md="3" offset-md="0" class="mt-4 mt-md-0">
                         <b-button pill block size="lg" variant="outline-secondary"
-                                  :href="ini.project.github">
+                                  :href="config.project.github">
                             View in GitHub
                             <b-icon icon="box-arrow-up-right" class="ml-1"></b-icon>
                         </b-button>
@@ -37,10 +38,10 @@
         <b-row class="pt-3 pt-md-4 pb-3">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
                 <h3 class="custom-section-title" :class="mainTextColorClass">
-                    What is <span class="colorful-text">{{ ini.project.name }}</span>
+                    What is <span class="colorful-text">{{ config.project.name }}</span>
                 </h3>
                 <div class="custom-section-text" :class="subTextColorClass">
-                    {{ ini.project.description.details }}
+                    {{ config.project.description.details }}
                 </div>
             </b-col>
         </b-row>
@@ -48,10 +49,10 @@
         <b-row class="pt-3 pt-md-4 pb-5 pb-md-3">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
                 <h3 class="custom-section-title" :class="mainTextColorClass">
-                    Why is <span class="colorful-text">{{ ini.project.name }}</span>
+                    Why is <span class="colorful-text">{{ config.project.name }}</span>
                 </h3>
                 <b-card-group deck>
-                    <b-card v-for="(feature, index) in ini.project.description.features" :key="index" no-body
+                    <b-card v-for="(feature, index) in config.project.description.features" :key="index" no-body
                             class="custom-card" :class="cardColorClass">
                         <b-card-body>
                             <b-card-title class="custom-card-title" :class="mainTextColorClass">
@@ -71,18 +72,18 @@
                 <h3 class="custom-section-title" :class="mainTextColorClass">
                     Get Start <span class="colorful-text">NOW</span>
                 </h3>
-                <b-button v-if="ini.components.demo" to="/demo"
+                <b-button v-if="config.components.demo.self" to="/demo"
                           pill size="lg" variant="outline-success" class="m-3">
                     Get Start
                 </b-button>
-                <b-button v-if="ini.components.documentation" to="/documentation"
+                <b-button v-if="config.components.documentation.self" to="/documentation"
                           pill size="lg" variant="outline-primary" class="m-3">
                     Documentation
                 </b-button>
             </b-col>
         </b-row>
         <div class="fixed-toolbar">
-            <scroll-to-top v-if="ini.components.scrollToTop"/>
+            <scroll-to-top v-if="config.components.overview.scrollToTop"/>
         </div>
     </b-container>
 </template>
@@ -96,7 +97,7 @@ export default {
     name: "index",
     computed: {
         getStartTo: function () {
-            if (this.ini.components.demo)
+            if (this.config.components.demo.self)
                 return '/demo';
             else
                 return '/documentation';
@@ -117,7 +118,7 @@ export default {
             }
         },
         ...mapState([
-            'ini'
+            'config'
         ])
     },
     methods: {

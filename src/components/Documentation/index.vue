@@ -11,8 +11,9 @@
             <div id="toc-container" v-html="tocHtml" class="pl-3"></div>
         </b-sidebar>
         <div class="fixed-toolbar">
-            <scroll-to-top v-if="ini.components.scrollToTop" class="mb-3"/>
-            <div class="sidebar-toggle" @click="sidebarVisible=!sidebarVisible">
+            <scroll-to-top v-if="config.components.documentation.scrollToTop" class="mb-3"/>
+            <div v-if="config.components.documentation.toc"
+                 class="sidebar-toggle" @click="sidebarVisible=!sidebarVisible">
                 <b-icon icon="justify" class="rounded-circle p-2 custom-icon" :class="iconColorClass"></b-icon>
             </div>
         </div>
@@ -56,7 +57,7 @@ export default {
             }
         },
         ...mapState([
-            'ini'
+            'config'
         ])
     },
     methods: {

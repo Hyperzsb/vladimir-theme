@@ -6,12 +6,13 @@
                 </div>
             </b-col>
         </b-row>
-        <b-sidebar id="toc-sidebar" title="Content" shadow backdrop backdrop-variant="dark"
-                   :visible="sidebarVisible">
-            <div id="toc-container" v-html="tocHtml" class="pl-3"></div>
+        <b-sidebar v-if="config.components.documentation.toc"
+                   title="Content" shadow backdrop backdrop-variant="dark" :visible="sidebarVisible">
+            <div id="documentation-toc-container" v-html="tocHtml" class="pl-3"></div>
         </b-sidebar>
         <div class="fixed-toolbar">
-            <scroll-to-top v-if="config.components.documentation.scrollToTop" class="mb-3"/>
+            <scroll-to-top v-if="config.components.documentation.scrollToTop"
+                           class="mb-3"/>
             <div v-if="config.components.documentation.toc"
                  class="sidebar-toggle" @click="sidebarVisible=!sidebarVisible">
                 <b-icon icon="justify" class="rounded-circle p-2 custom-icon" :class="iconColorClass"></b-icon>
@@ -66,7 +67,9 @@ export default {
         ])
     },
     created() {
+        //Change nav item activity
         this.changeNavItem(2);
+
         // markdown-it plugins
         const markdownItAbbr = require('markdown-it-abbr');
         const markdownItAttrs = require('markdown-it-attrs');
@@ -79,9 +82,8 @@ export default {
         const markdownItMark = require('markdown-it-mark');
         const markdownItSub = require('markdown-it-sub');
         const markdownItSup = require('markdown-it-sup');
-        const markdownItTocAndAnchor = require('markdown-it-toc-and-anchor').default;
 
-        // Class Mapping for markdownItClass
+        // Class Mapping for markdown-it-class plugin
         const classMapping = {
             code: 'markdown-code',
             h1: ['markdown-h1', 'default-markdown-h-color'],
@@ -101,6 +103,7 @@ export default {
             blockquote: ['markdown-blockquote', 'default-markdown-blockquote-color'],
             strong: 'default-markdown-strong-color'
         };
+
         // markdown-it config
         const markDownIt = require('markdown-it')({
             html: true,
@@ -129,34 +132,29 @@ export default {
             .use(markdownItIns)
             .use(markdownItMark)
             .use(markdownItSub)
-            .use(markdownItSup)
-            .use(markdownItTocAndAnchor, {
+            .use(markdownItSup);
+
+        // If toc is enabled
+        if (this.config.components.documentation.toc) {
+            const markdownItTocAndAnchor = require('markdown-it-toc-and-anchor').default;
+            markDownIt.use(markdownItTocAndAnchor, {
                 tocClassName: 'markdown-toc',
                 anchorLinkSymbol: '¶',
                 anchorLinkBefore: false,
                 anchorClassName: 'markdown-a markdown-anchor default-markdown-a-color',
             });
+            markDownIt.set({
+                tocCallback: function (tocMarkdown, tocArray, tocHtml) {
+                    externalTocHtml = tocHtml;
+                }
+            });
+        }
 
-        markDownIt.set({
-            tocCallback: function (tocMarkdown, tocArray, tocHtml) {
-                externalTocHtml = tocHtml;
-            }
-        });
-
+        // Render the markdown file
         this.markDownText = markDownIt.render(require('@/assets/markdown/documentation.md'));
     },
     mounted() {
-        let anchors = document.getElementsByClassName('markdown-anchor');
-        for (let i = 0; i < anchors.length; i++) {
-            anchors.item(i).onclick = function () {
-                window.scrollTo({
-                    top: document.getElementById(anchors.item(i).attributes['href'].value.substr(1)).offsetTop,
-                    behavior: "smooth"
-                });
-                return false;
-            }
-        }
-
+        // Define recursive function for event listener adding
         function addTocClickListener(node) {
             if (node.tagName.toString() === 'A') {
                 node.onclick = function () {
@@ -173,7 +171,21 @@ export default {
                 addTocClickListener(node.children[i]);
         }
 
-        addTocClickListener(document.getElementById('toc-container'));
+        // If toc is enabled
+        if (this.config.components.documentation.toc) {
+            let anchors = document.getElementsByClassName('markdown-anchor');
+            for (let i = 0; i < anchors.length; i++) {
+                anchors.item(i).onclick = function () {
+                    window.scrollTo({
+                        top: document.getElementById(anchors.item(i).attributes['href'].value.substr(1)).offsetTop,
+                        behavior: "smooth"
+                    });
+                    return false;
+                }
+            }
+
+            addTocClickListener(document.getElementById('documentation-toc-container'));
+        }
     },
     components: {
         ScrollToTop

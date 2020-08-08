@@ -1,4 +1,4 @@
-# Demo Page
+# Documentation Page
 
 **Basic Markdown Support Based on `markdown-it` library and its plugins:**
 

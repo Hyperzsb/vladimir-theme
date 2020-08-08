@@ -143,7 +143,7 @@ export default {
             }
         });
 
-        this.markDownText = markDownIt.render(require('@/assets/markdown/demo.md'));
+        this.markDownText = markDownIt.render(require('@/assets/markdown/documentation.md'));
     },
     mounted() {
         let anchors = document.getElementsByClassName('markdown-anchor');

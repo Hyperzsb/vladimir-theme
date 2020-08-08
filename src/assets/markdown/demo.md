@@ -1,5 +1,7 @@
 # Demo Page
 
+**This demo page currently only includes a markdown presentation, but there can be more user-defined contents.**
+
 **Basic Markdown Support Based on `markdown-it` library and its plugins:**
 
 - `markdown-it-abbr`

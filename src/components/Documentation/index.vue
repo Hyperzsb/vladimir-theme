@@ -161,6 +161,44 @@ export default {
         this.markDownText = markDownIt.render(require('@/assets/markdown/documentation.md'));
     },
     mounted() {
+        // This part of functions are aimed to simulate anchor behavior by using click event handler
+
+        // Footnotes' click event handler
+
+        // Footnote references links
+        let footnoteRefLinks = document.getElementsByClassName('footnote-ref');
+        for (let i = 0; i < footnoteRefLinks.length; i++) {
+            let link = footnoteRefLinks.item(i).children[0];
+            link.onclick = function () {
+                window.scrollTo({
+                    top: document.getElementById(link.attributes['href'].value.substr(1)).offsetTop,
+                    behavior: "smooth"
+                });
+                return false;
+            }
+        }
+
+        // Footnote back-to references links
+        let footnoteBackRefLinks = document.getElementsByClassName('footnote-backref');
+
+        console.log(footnoteBackRefLinks.length);
+        for (let i = 0; i < footnoteBackRefLinks.length; i++) {
+            let link = footnoteBackRefLinks.item(i);
+            link.onclick = function () {
+                // document.getElementById(link.attributes['href'].value.substr(1)).scrollIntoView({
+                //     behavior: 'smooth',
+                //     block: 'center'
+                // })
+                window.scrollTo({
+                    top: document.getElementById(link.attributes['href'].value.substr(1)).parentNode.offsetTop,
+                    behavior: "smooth"
+                });
+                return false;
+            }
+        }
+
+        // Toc's click event handler
+
         // Define recursive function for event listener adding
         function addTocClickListener(node) {
             if (node.tagName.toString() === 'A') {

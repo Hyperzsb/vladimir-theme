@@ -141,15 +141,15 @@ export default {
 @import "src/assets/scss/variables";
 
 .default-text-color-main {
-    color: map-get($default-theme-color, 'text-color');
+    color: $default-text-color;
 }
 
 .default-text-color-sub {
-    color: map-get($default-theme-color, 'text-color-light');
+    color: $default-text-color-light;
 }
 
 .default-card-color::before, ::after {
-    background-color: map-get($default-theme-color, 'text-color-lighter');
+    background-color: $default-text-color-lighter;
 }
 
 .colorful-text {
@@ -247,33 +247,32 @@ export default {
     margin-right: 2rem;
     margin-bottom: 3rem;
     line-height: 2rem;
-}
 
-.custom-card:last-child {
-
-    @include mobile {
-        margin-bottom: 0;
+    &:last-child {
+        @include mobile {
+            margin-bottom: 0;
+        }
     }
-}
 
-.custom-card::before {
-    content: '';
-    position: absolute;
-    bottom: -1rem;
-    left: 0;
-    height: 1px;
-    width: 50%;
-    transform: skew(0deg, 6deg);
-}
+    &:before {
+        content: '';
+        position: absolute;
+        bottom: -1rem;
+        left: 0;
+        height: 1px;
+        width: 50%;
+        transform: skew(0deg, 6deg);
+    }
 
-.custom-card::after {
-    content: '';
-    position: absolute;
-    bottom: -1rem;
-    right: 0;
-    height: 1px;
-    width: 50%;
-    transform: skew(0deg, -6deg);
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: -1rem;
+        right: 0;
+        height: 1px;
+        width: 50%;
+        transform: skew(0deg, -6deg);
+    }
 }
 
 .custom-card-title {

@@ -126,46 +126,46 @@ export default {
 }
 
 .default-bg-color-after {
-    background: rgba(map-get($default-theme-color, 'base-color'), .5);
+    background: rgba($default-base-color, .5);
 }
 
 .default-link-color {
-    color: map-get($default-theme-color, 'link-color');
+    color: $default-link-color;
 }
 
 .default-link-color:hover {
-    color: map-get($default-theme-color, 'link-color-light');
+    color: $default-link-color-light;
 }
 
 .default-button-color-active {
-    color: map-get($default-theme-color, 'link-color-lighter');
+    color: $default-link-color-lighter;
 }
 
 .default-button-color-inactive {
-    color: map-get($default-theme-color, 'link-color');
-}
+    color: $default-link-color;
 
-.default-button-color-inactive:hover {
-    color: map-get($default-theme-color, 'link-color-light');
-}
+    &:hover {
+        color: $default-link-color-light;
+    }
 
-.default-button-color-inactive:hover::after {
-    border-bottom-color: map-get($default-theme-color, 'link-color-light');
+    &:hover::after {
+        border-bottom-color: $default-link-color-light;
+    }
 }
 
 .custom-navbar {
     transition: 0.25s;
-}
 
-.custom-navbar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    backdrop-filter: blur(10px);
-    z-index: -1;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        backdrop-filter: blur(10px);
+        z-index: -1;
+    }
 }
 
 .custom-nav-logo {
@@ -184,45 +184,45 @@ export default {
     box-sizing: border-box;
     position: relative;
     vertical-align: middle;
-}
 
-.custom-button::after {
-    box-sizing: inherit;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    &:after {
+        box-sizing: inherit;
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .custom-button-active {
     transition: color 0.25s;
-}
 
-.custom-button-active::after {
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    border-bottom: 2px solid;
+    &:after {
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border-bottom: 2px solid;
+    }
 }
 
 .custom-button-inactive {
     transition: color 0.25s;
-}
 
-.custom-button-inactive::after {
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.25s ease-out 0.1s, width 0.25s ease-out 0.1s;
-}
+    &:after {
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-bottom: 2px solid transparent;
+        transition: border-color 0.25s ease-out 0.1s, width 0.25s ease-out 0.1s;
+    }
 
-.custom-button-inactive:hover::after {
-    width: 100%;
-    height: 100%;
-    transition: border-color 0.25s ease-out 0.1s, width 0.25s ease-out 0.1s;
+    &:hover::after {
+        width: 100%;
+        height: 100%;
+        transition: border-color 0.25s ease-out 0.1s, width 0.25s ease-out 0.1s;
+    }
 }
 
 </style>

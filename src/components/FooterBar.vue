@@ -148,23 +148,23 @@ export default {
 @import "src/assets/scss/variables";
 
 .default-bg-color {
-    background: map-get($default-theme-color, 'base-color');
+    background: $default-base-color;
 }
 
 .default-link-color {
-    color: map-get($default-theme-color, 'link-color');
+    color: $default-link-color;
 }
 
 .default-link-color:hover {
-    color: map-get($default-theme-color, 'link-color-light');
+    color: $default-link-color-light;
 }
 
 .default-text-color-main {
-    color: map-get($default-theme-color, 'text-color');
+    color: $default-text-color;
 }
 
 .default-text-color-sub {
-    color: map-get($default-theme-color, 'text-color-light');
+    color: $default-text-color-light;
 }
 
 .font-size-101 {
@@ -176,12 +176,12 @@ export default {
 }
 
 .border-top-1 {
-    border-top: map-get($default-theme-color, 'base-color-dark') 1px solid
+    border-top: $default-base-color-dark 1px solid;
 }
 
 .custom-footer {
     margin-top: 35px;
-    box-shadow: 0 -15px 20px #dee2e6;
+    box-shadow: 0 -15px 20px $default-shadow-color-light;
 }
 
 .custom-footer-container {

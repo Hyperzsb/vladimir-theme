@@ -1,6 +1,6 @@
 <template>
     <transition name="fade" mode="out-in">
-        <div v-if="isScrolled" class="scroll-to-top" @click="scrollToTop()">
+        <div v-if="isScrolled" class="scroll-to-top" :class="shadowColorClass" @click="scrollToTop()">
             <b-icon icon="arrow-up-circle-fill" class="custom-icon" :class="iconColorClass"></b-icon>
         </div>
     </transition>
@@ -19,6 +19,11 @@ export default {
         iconColorClass: function () {
             return {
                 'default-icon-color': true
+            }
+        },
+        shadowColorClass: function () {
+            return {
+                'default-shadow-color': true
             }
         }
     },
@@ -49,7 +54,19 @@ export default {
 @import "../assets/scss/variables";
 
 .default-icon-color {
-    color: rgba(map-get($default-theme-color, 'link-color'), .7);
+    color: rgba($default-link-color, .7);
+}
+
+.default-shadow-color {
+    box-shadow: 0 0 0.7rem $default-shadow-color;
+
+    &:hover {
+        box-shadow: 0 0 1.3rem $default-shadow-color;
+    }
+
+    &:active {
+        box-shadow: 0 0 0.7rem $default-shadow-color;
+    }
 }
 
 .fade-enter-active {
@@ -74,29 +91,20 @@ export default {
     width: 3rem;
     text-align: center;
     border-radius: 50%;
-    box-shadow: 0 0 0.7rem #868e96;
     cursor: pointer;
     transition: 0.25s;
 
-    &:hover {
-        box-shadow: 0 0 1.3rem #868e96;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 50%;
+        backdrop-filter: blur(2px);
+        z-index: -1;
     }
-
-    &:active {
-        box-shadow: 0 0 0.7rem #868e96;
-    }
-}
-
-.scroll-to-top::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 50%;
-    backdrop-filter: blur(2px);
-    z-index: -1;
 }
 
 .custom-icon {

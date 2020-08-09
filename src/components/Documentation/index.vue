@@ -14,7 +14,7 @@
             <scroll-to-top v-if="config.components.documentation.scrollToTop"
                            class="mb-3"/>
             <div v-if="config.components.documentation.toc"
-                 class="sidebar-toggle" @click="sidebarVisible=!sidebarVisible">
+                 class="sidebar-toggle" :class="sidebarToggleColorClass" @click="sidebarVisible=!sidebarVisible">
                 <b-icon icon="justify" class="rounded-circle p-2 custom-icon" :class="iconColorClass"></b-icon>
             </div>
         </div>
@@ -55,6 +55,11 @@ export default {
         iconColorClass: function () {
             return {
                 'default-icon-color': true
+            }
+        },
+        sidebarToggleColorClass: function () {
+            return {
+                'default-sidebar-toggle-color': true
             }
         },
         ...mapState([
@@ -201,8 +206,20 @@ export default {
 @import "src/assets/scss/variables";
 
 .default-icon-color {
-    color: map-get($default-theme-color, 'base-color');
-    background-color: rgba(map-get($default-theme-color, 'link-color'), .7);
+    color: $default-base-color;
+    background-color: rgba($default-link-color, .7);
+}
+
+.default-sidebar-toggle-color {
+    box-shadow: 0 0 0.7rem $default-shadow-color;
+
+    &:hover {
+        box-shadow: 0 0 1.3rem $default-shadow-color;
+    }
+
+    &:active {
+        box-shadow: 0 0 0.7rem $default-shadow-color;
+    }
 }
 
 .markdown-container {
@@ -218,29 +235,20 @@ export default {
     width: 3rem;
     border-radius: 50%;
     text-align: center;
-    box-shadow: 0 0 0.7rem #868e96;
     cursor: pointer;
     transition: 0.25s;
 
-    &:hover {
-        box-shadow: 0 0 1.3rem #868e96;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 50%;
+        backdrop-filter: blur(2px);
+        z-index: -1;
     }
-
-    &:active {
-        box-shadow: 0 0 0.7rem #868e96;
-    }
-}
-
-.sidebar-toggle::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 50%;
-    backdrop-filter: blur(2px);
-    z-index: -1;
 }
 
 .custom-icon {

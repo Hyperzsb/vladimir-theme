@@ -131,10 +131,14 @@ export default {
 
 .default-link-color {
     color: $default-link-color;
-}
 
-.default-link-color:hover {
-    color: $default-link-color-light;
+    &:hover {
+        color: $default-link-color-light;
+    }
+
+    &:active {
+        color: $default-link-color-light;
+    }
 }
 
 .default-button-color-active {

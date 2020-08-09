@@ -8,6 +8,7 @@ const Overview = () => import('@/components/Overview');
 const Demo = () => import('@/components/Demo');
 const Documentation = () => import('@/components/Documentation');
 const About = () => import('@/components/About');
+const Error404 = () => import('@/components/Error/Error404')
 
 let routes = [{
     path: '/',
@@ -15,6 +16,9 @@ let routes = [{
 }, {
     path: '/overview',
     component: Overview
+}, {
+    path: '/404',
+    component: Error404
 }]
 
 if (store.state.config.components.demo.self)
@@ -34,6 +38,11 @@ if (store.state.config.components.about.self)
         path: '/about',
         component: About
     })
+
+routes.push({
+    path: '*',
+    redirect: '/404'
+})
 
 const index = new VueRouter({
     routes

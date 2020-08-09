@@ -66,7 +66,8 @@
                         </b-row>
                     </b-col>
                     <b-col cols="12" order="1" md="3" order-md="2" class="mb-5 mb-md-0">
-                        <b-img center :src="config.project.logo" :alt="config.project.name" style="height: 10rem"></b-img>
+                        <b-img center :src="config.project.logo" :alt="config.project.name"
+                               style="height: 10rem"></b-img>
                     </b-col>
                 </b-row>
                 <b-row class="pt-3">
@@ -153,10 +154,14 @@ export default {
 
 .default-link-color {
     color: $default-link-color;
-}
 
-.default-link-color:hover {
-    color: $default-link-color-light;
+    &:hover {
+        color: $default-link-color-light;
+    }
+
+    &:active {
+        color: $default-link-color-light;
+    }
 }
 
 .default-text-color-main {

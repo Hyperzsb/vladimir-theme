@@ -176,7 +176,7 @@ code {
 }
 
 .markdown-p {
-
+  margin: 0.5rem 0;
 }
 
 .markdown-a {
@@ -246,6 +246,38 @@ code {
   border-radius: 7px;
 }
 
+// Other classes predefined by markdown-it
+
+// Footnote
+.markdown-container .footnotes-sep {
+  margin: 3rem 0 2.5rem;
+}
+
+// Custom containers
+.markdown-container .hint, .warning, .fatal {
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 5px;
+  box-shadow: 3px 3px 15px #868e96;
+
+  p {
+    margin: 0;
+  }
+}
+
+.markdown-container .hint {
+  background-color: map-get($default-theme-color, 'hint-color');
+}
+
+.markdown-container .warning {
+  background-color: map-get($default-theme-color, 'warning-color');
+}
+
+.markdown-container .fatal {
+  background-color: map-get($default-theme-color, 'fatal-color');
+}
+
+// Toc lists
 #toc-container .markdown-ul, .markdown-ol {
   margin: 0.7rem 0 0.7rem 0;
   padding-inline-start: 20px;

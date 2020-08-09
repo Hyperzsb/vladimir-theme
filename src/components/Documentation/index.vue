@@ -8,7 +8,7 @@
         </b-row>
         <b-sidebar v-if="config.components.documentation.toc"
                    title="Content" shadow backdrop backdrop-variant="dark" :visible="sidebarVisible">
-            <div id="documentation-toc-container" v-html="tocHtml" class="pl-3"></div>
+            <div id="toc-container" v-html="tocHtml" class="pl-3"></div>
         </b-sidebar>
         <div class="fixed-toolbar">
             <scroll-to-top v-if="config.components.documentation.scrollToTop"
@@ -125,7 +125,9 @@ export default {
         }).use(markdownItAbbr)
             .use(markdownItAttrs)
             .use(markdownItClass, classMapping)
+            .use(markdownItContainer, 'hint')
             .use(markdownItContainer, 'warning')
+            .use(markdownItContainer, 'fatal')
             .use(markdownItDeflist)
             .use(markdownItEmoji)
             .use(markdownItFootnote)
@@ -184,7 +186,7 @@ export default {
                 }
             }
 
-            addTocClickListener(document.getElementById('documentation-toc-container'));
+            addTocClickListener(document.getElementById('toc-container'));
         }
     },
     components: {

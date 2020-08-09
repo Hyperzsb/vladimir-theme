@@ -1,5 +1,6 @@
 @import "open-color";
 
+// Default theme colors map
 $default-theme-color: (
         'base-color': $oc-gray-0,
         'base-color-dark': $oc-gray-2,
@@ -8,7 +9,10 @@ $default-theme-color: (
         'link-color': $oc-teal-9,
         'text-color-lighter': $oc-gray-5,
         'text-color-light': $oc-gray-7,
-        'text-color': $oc-gray-9
+        'text-color': $oc-gray-9,
+        'hint-color': $oc-teal-3,
+        'warning-color': $oc-yellow-3,
+        'fatal-color': $oc-red-3
 );
 
 @mixin mobile {

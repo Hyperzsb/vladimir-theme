@@ -1,24 +1,10 @@
 <template>
-    <b-container tag="section" fluid>
-        <b-row class="pt-0 pt-md-4 pb-4">
-            <b-col cols="10" offset="1" md="8" offset-md="2">
-                <div v-html="markDownText" v-highlight class="markdown-container">
-                </div>
-            </b-col>
-        </b-row>
-        <b-sidebar v-if="config.components.documentation.toc"
-                   title="Content" shadow backdrop backdrop-variant="dark" :visible="sidebarVisible">
+    <div>
+        <div v-html="markDownText" v-highlight class="markdown-container"></div>
+        <b-sidebar v-if="this.toc" title="Content" shadow backdrop backdrop-variant="dark" :visible="tocVisible">
             <div id="toc-container" v-html="tocHtml" class="pl-3"></div>
         </b-sidebar>
-        <div class="fixed-toolbar">
-            <scroll-to-top v-if="config.components.documentation.scrollToTop"
-                           class="mb-3"/>
-            <div v-if="config.components.documentation.toc"
-                 class="sidebar-toggle" :class="sidebarToggleColorClass" @click="sidebarVisible=!sidebarVisible">
-                <b-icon icon="justify" class="rounded-circle p-2 custom-icon" :class="iconColorClass"></b-icon>
-            </div>
-        </div>
-    </b-container>
+    </div>
 </template>
 
 <script>
@@ -26,10 +12,6 @@
 import Vue from 'vue'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-light.css'
-
-import {mapState, mapMutations} from 'vuex'
-
-import ScrollToTop from "@/components/ScrollToTop";
 
 Vue.directive('highlight', function (el) {
     let blocks = el.querySelectorAll('pre code');
@@ -41,7 +23,12 @@ Vue.directive('highlight', function (el) {
 let externalTocHtml = '';
 
 export default {
-    name: "index",
+    name: "MarkdownRenderer",
+    props: {
+        src: String,
+        toc: Boolean,
+        tocVisible: Boolean
+    },
     data() {
         return {
             markDownText: '',
@@ -51,30 +38,9 @@ export default {
     computed: {
         tocHtml: function () {
             return externalTocHtml;
-        },
-        iconColorClass: function () {
-            return {
-                'default-icon-color': true
-            }
-        },
-        sidebarToggleColorClass: function () {
-            return {
-                'default-sidebar-toggle-color': true
-            }
-        },
-        ...mapState([
-            'config'
-        ])
-    },
-    methods: {
-        ...mapMutations([
-            'changeNavItem'
-        ])
+        }
     },
     created() {
-        //Change nav item activity
-        this.changeNavItem(2);
-
         // markdown-it plugins
         const markdownItAbbr = require('markdown-it-abbr');
         const markdownItAttrs = require('markdown-it-attrs');
@@ -142,7 +108,7 @@ export default {
             .use(markdownItSup);
 
         // If toc is enabled
-        if (this.config.components.documentation.toc) {
+        if (this.toc) {
             const markdownItTocAndAnchor = require('markdown-it-toc-and-anchor').default;
             markDownIt.use(markdownItTocAndAnchor, {
                 tocClassName: 'markdown-toc',
@@ -158,7 +124,7 @@ export default {
         }
 
         // Render the markdown file
-        this.markDownText = markDownIt.render(require('@/assets/markdown/documentation.md'));
+        this.markDownText = markDownIt.render(this.src);
     },
     mounted() {
         // This part of functions are aimed to simulate anchor behavior by using click event handler
@@ -216,7 +182,7 @@ export default {
         }
 
         // If toc is enabled
-        if (this.config.components.documentation.toc) {
+        if (this.toc) {
             let anchors = document.getElementsByClassName('markdown-anchor');
             for (let i = 0; i < anchors.length; i++) {
                 anchors.item(i).onclick = function () {
@@ -230,67 +196,10 @@ export default {
 
             addTocClickListener(document.getElementById('toc-container'));
         }
-    },
-    components: {
-        ScrollToTop
     }
 }
-
 </script>
 
-<style lang="scss" scoped>
-
-@import "src/assets/scss/variables";
-
-.default-icon-color {
-    color: $default-base-color;
-    background-color: rgba($default-link-color, .7);
-}
-
-.default-sidebar-toggle-color {
-    box-shadow: 0 0 0.7rem $default-shadow-color;
-
-    &:hover {
-        box-shadow: 0 0 1.3rem $default-shadow-color;
-    }
-
-    &:active {
-        box-shadow: 0 0 0.7rem $default-shadow-color;
-    }
-}
-
-.markdown-container {
-    line-height: 2rem;
-
-    @include mobile {
-        line-height: 1.8rem;
-    }
-}
-
-.sidebar-toggle {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.25s;
-
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        border-radius: 50%;
-        backdrop-filter: blur(2px);
-        z-index: -1;
-    }
-}
-
-.custom-icon {
-    height: 3rem;
-    width: 3rem;
-}
+<style scoped>
 
 </style>

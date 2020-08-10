@@ -1,5 +1,5 @@
 <template>
-    <b-container>
+    <b-container tag="section" fluid>
         <b-row>
             <b-col cols="10" offset="1" md="8" offset-md="2" class="error-container">
                 <h1 class="error-name">404<br>Not Found</h1>
@@ -46,6 +46,7 @@ export default {
         },
         linkColorClass: function () {
             return {
+                'error-nav-link': true,
                 'default-link-color': true
             }
         },
@@ -88,7 +89,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     height: 90vh;
     text-align: center;
     padding-top: 3rem;
@@ -113,6 +114,11 @@ export default {
 
 .error-nav {
     margin: 0.5rem 0;
+}
+
+.error-nav-link {
+    text-decoration-line: underline;
+    transition: 0.25s;
 }
 
 </style>

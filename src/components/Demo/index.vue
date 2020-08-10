@@ -1,6 +1,6 @@
 <template>
     <b-container tag="section" fluid>
-        <b-row class="pt-4 pb-4">
+        <b-row class="pt-0 pt-md-4 pb-4">
             <b-col cols="10" offset="1" md="8" offset-md="2">
                 <div v-html="markDownText" v-highlight class="markdown-container">
                 </div>
@@ -181,7 +181,6 @@ export default {
         // Footnote back-to references links
         let footnoteBackRefLinks = document.getElementsByClassName('footnote-backref');
 
-        console.log(footnoteBackRefLinks.length);
         for (let i = 0; i < footnoteBackRefLinks.length; i++) {
             let link = footnoteBackRefLinks.item(i);
             link.onclick = function () {

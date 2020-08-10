@@ -81,7 +81,28 @@ const index = new Vuex.Store({
                 },
                 about: {
                     self: true,
-                    scrollToTop: true
+                    scrollToTop: true,
+                    members: [{
+                        name: 'Member One',
+                        description: 'Some description for member one.',
+                        headPortrait: null
+                    }, {
+                        name: 'Member Two',
+                        description: 'Some description for member two.',
+                        headPortrait: null
+                    }, {
+                        name: 'Member Three',
+                        description: 'Some description for member three.',
+                        headPortrait: null
+                    }, {
+                        name: 'Member Four',
+                        description: 'Some description for member four.',
+                        headPortrait: null
+                    }, {
+                        name: 'Member Five',
+                        description: 'Some description for member five.',
+                        headPortrait: null
+                    }]
                 },
             }
         },

@@ -11,7 +11,9 @@ Currently includes:
 
 TODOs:
 
-- Wrapped toc component
+- Markdown support refactor (wrapped component / toc sidebar support)
+- Travis-CI support
+- Unit test
 - Skeleton
 - Server-Side Rendering / SEO optimization
 

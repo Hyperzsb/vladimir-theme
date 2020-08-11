@@ -23,19 +23,14 @@
                 </b-row>
             </b-col>
         </b-row>
-        <div class="fixed-toolbar" id="side-toolbar">
-            <scroll-to-top v-if="config.components.about.scrollToTop" class="mb-3"/>
-            <div class="sidebar-toggle" :class="sidebarToggleColorClass" v-b-toggle.toc-sidebar>
-                <b-icon icon="justify" class="rounded-circle p-2 custom-icon" :class="iconColorClass"></b-icon>
-            </div>
-        </div>
+        <side-toolbar :scroll-to-top="config.components.about.scrollToTop"/>
     </b-container>
 </template>
 
 <script>
 
 import {mapState, mapMutations} from 'vuex'
-import ScrollToTop from "@/components/ScrollToTop";
+import SideToolbar from '@/components/SideToolbar'
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 export default {
@@ -69,7 +64,7 @@ export default {
         this.changeNavItem(3);
     },
     components: {
-        ScrollToTop,
+        SideToolbar,
         MarkdownRenderer
     }
 }
@@ -77,50 +72,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-@import "src/assets/scss/variables";
-
-.default-icon-color {
-    color: $default-base-color;
-    background-color: rgba($default-link-color, .7);
-}
-
-.default-sidebar-toggle-color {
-    box-shadow: 0 0 0.7rem $default-shadow-color;
-
-    &:hover {
-        box-shadow: 0 0 1.3rem $default-shadow-color;
-    }
-
-    &:active {
-        box-shadow: 0 0 0.7rem $default-shadow-color;
-    }
-}
-
-.sidebar-toggle {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.25s;
-
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        border-radius: 50%;
-        backdrop-filter: blur(2px);
-        z-index: -1;
-    }
-}
-
-.custom-icon {
-    height: 3rem;
-    width: 3rem;
-}
 
 </style>

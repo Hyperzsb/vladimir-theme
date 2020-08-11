@@ -51,7 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 
-@import "../assets/scss/variables";
+@import "../../assets/scss/variables";
 
 .default-icon-color {
     color: rgba($default-link-color, .7);

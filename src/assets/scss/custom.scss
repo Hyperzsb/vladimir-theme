@@ -43,6 +43,7 @@ code {
   position: fixed;
   bottom: 10vh;
   right: 5vw;
+  z-index: 1;
 
   @include mobile {
     bottom: 5vh;

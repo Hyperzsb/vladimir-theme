@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-html="markDownText" v-highlight class="markdown-container"></div>
-        <b-sidebar v-if="this.toc" title="Content" shadow backdrop backdrop-variant="dark" :visible="tocVisible">
+        <b-sidebar v-if="this.toc" id="toc-sidebar" title="Content" shadow backdrop backdrop-variant="dark">
             <div id="toc-container" v-html="tocHtml" class="pl-3"></div>
         </b-sidebar>
     </div>
@@ -26,8 +26,7 @@ export default {
     name: "MarkdownRenderer",
     props: {
         src: String,
-        toc: Boolean,
-        tocVisible: Boolean
+        toc: Boolean
     },
     data() {
         return {
@@ -200,6 +199,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+@import "src/assets/scss/variables";
+
+.markdown-container {
+    line-height: 2rem;
+
+    @include mobile {
+        line-height: 1.8rem;
+    }
+}
 
 </style>

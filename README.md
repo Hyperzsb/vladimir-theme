@@ -7,11 +7,13 @@ Currently includes:
 - Overview page
 - Demo page
 - Documentation page
-- About page
+- About page (*WIP*)
+- **Fully Markdown rendering support**
 
 TODOs:
 
-- Markdown support refactor (wrapped component / toc sidebar support)
+- Color themes
+- Localize
 - Travis-CI support
 - Unit test
 - Skeleton

@@ -13,7 +13,7 @@ Currently includes:
 TODOs:
 
 - Color themes
-- Localize
+- Localization (*WIP*)
 - Travis-CI support
 - Unit test
 - Skeleton

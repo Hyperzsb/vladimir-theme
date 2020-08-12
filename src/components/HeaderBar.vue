@@ -11,31 +11,39 @@
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
                 <b-nav-item to="/overview" replace>
-                    <b class="pb-1 pt-3 pt-md-1 mr-2 custom-button" :class="navItemClass(0)">
-                        Overview
+                    <b class="pb-1 pt-1 mr-2 custom-button" :class="navItemClass(0)">
+                        {{ $t('messages.Overview') }}
                     </b>
                 </b-nav-item>
                 <b-nav-item v-if="config.components.demo.self" to="/demo" replace>
-                    <b class="pb-1 pt-3 pt-md-1 mr-2 custom-button" :class="navItemClass(1)">
-                        Demo
+                    <b class="pb-1 pt-1 mr-2 custom-button" :class="navItemClass(1)">
+                        {{ $t('messages.Demo') }}
                     </b>
                 </b-nav-item>
                 <b-nav-item v-if="config.components.documentation.self" to="/documentation" replace>
-                    <b class="pb-1 pt-3 pt-md-1 mr-2 custom-button" :class="navItemClass(2)">
-                        Documentation
+                    <b class="pb-1 pt-1 mr-2 custom-button" :class="navItemClass(2)">
+                        {{ $t('messages.Documentation') }}
                     </b>
                 </b-nav-item>
                 <b-nav-item v-if="config.components.about.self" to="/about" replace>
-                    <b class="pb-1 pt-3 pt-md-1 mr-2 custom-button" :class="navItemClass(3)">
-                        About
+                    <b class="pb-1 pt-1 mr-2 custom-button" :class="navItemClass(3)">
+                        {{ $t('messages.About') }}
                     </b>
                 </b-nav-item>
                 <b-nav-item v-if="config.project.github" :href="config.project.github" target="_blank">
-                    <b class="pb-1 pt-3 pt-md-1 mr-2 custom-button" :class="navItemClass(4)">
+                    <b class="pb-1 pt-1 mr-2 custom-button" :class="navItemClass(4)">
                         GitHub
                         <b-icon icon="box-arrow-up-right" class="ml-1"></b-icon>
                     </b>
                 </b-nav-item>
+                <b-nav-item-dropdown right no-caret class="pb-1 pt-1 mr-2">
+                    <template v-slot:button-content>
+                        <b-icon icon="globe2" class="custom-icon" :class="iconColorClass"></b-icon>
+                    </template>
+                    <b-dropdown-item @click="changeLanguage('en')">English</b-dropdown-item>
+                    <b-dropdown-divider></b-dropdown-divider>
+                    <b-dropdown-item @click="changeLanguage('zh')">简体中文</b-dropdown-item>
+                </b-nav-item-dropdown>
             </b-navbar-nav>
         </b-collapse>
     </b-navbar>
@@ -72,6 +80,11 @@ export default {
                 'default-link-color': true
             }
         },
+        iconColorClass: function () {
+            return {
+                'default-icon-color': true
+            }
+        },
         ...mapState([
             'config',
             'navItem'
@@ -105,6 +118,10 @@ export default {
         changeShadow() {
             let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             this.isScrolled = scrollTop > 10;
+        },
+        changeLanguage(lang) {
+            this.$i18n.locale = lang;
+            this.$cookies.set('InitialLang', lang, 60 * 60);
         }
     },
     mounted() {
@@ -157,6 +174,18 @@ export default {
     }
 }
 
+.default-icon-color {
+    color: $default-link-color;
+
+    &:hover {
+        color: $default-link-color-light;
+    }
+
+    &:active {
+        color: $default-link-color-light;
+    }
+}
+
 .custom-navbar {
     transition: 0.25s;
 
@@ -188,6 +217,7 @@ export default {
     box-sizing: border-box;
     position: relative;
     vertical-align: middle;
+    transition: 0.25s;
 
     &:after {
         box-sizing: inherit;
@@ -199,7 +229,7 @@ export default {
 }
 
 .custom-button-active {
-    transition: color 0.25s;
+    transition: 0.25s;
 
     &:after {
         bottom: 0;
@@ -211,7 +241,7 @@ export default {
 }
 
 .custom-button-inactive {
-    transition: color 0.25s;
+    transition: 0.25s;
 
     &:after {
         bottom: 0;
@@ -227,6 +257,10 @@ export default {
         height: 100%;
         transition: border-color 0.25s ease-out 0.1s, width 0.25s ease-out 0.1s;
     }
+}
+
+.custom-icon {
+    transition: 0.25s;
 }
 
 </style>

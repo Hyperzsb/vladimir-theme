@@ -9,14 +9,14 @@ Currently includes:
 - Documentation page
 - About page (*WIP*)
 - **Fully Markdown rendering support**
+- **Localization** (maybe some refactor or optimization in the future)
 
 TODOs:
 
 - Color themes
-- Localization (*WIP*)
 - Travis-CI support
 - Unit test
 - Skeleton
-- Server-Side Rendering / SEO optimization
+- Server-Side Rendering & SEO
 
 ***Continually updating...***

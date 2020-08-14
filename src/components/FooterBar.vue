@@ -72,14 +72,16 @@
                 </b-row>
                 <b-row class="pt-3">
                     <b-col cols="10" offset="1" :md="footnoteCols" :offset-md="footnoteOffset"
-                           class="border-top-1 p-3">
+                           class="border-top-1 p-3" :class="borderColorClass">
                         <div class="pt-3 font-size-09" :class="subTextColorClass">
                             {{ $t('messages.components.footerBar.footnotes[0]') }}&nbsp;
                             <b-link href="https://cn.vuejs.org/" class="custom-link" :class="linkColorClass">
                                 Vue.js
                             </b-link>
                             <br/>
-                            {{ $t('messages.components.footerBar.footnotes[1]') }}&nbsp;<b>{{ config.project.version }}</b>
+                            {{ $t('messages.components.footerBar.footnotes[1]') }}&nbsp;<b>{{
+                                config.project.version
+                            }}</b>
                             &nbsp;{{ $t('messages.components.footerBar.footnotes[2]') }}&nbsp;
                             <b-link href="https://www.mit-license.org/" class="custom-link" :class="linkColorClass">
                                 MIT
@@ -106,24 +108,56 @@ export default {
     name: "FooterBar",
     computed: {
         footerColorClass: function () {
-            return {
-                'default-bg-color': true,
-            }
+            if (this.theme === 'default')
+                return {
+                    'default-bg-color': true,
+                    'default-shadow-color': true,
+                };
+            else
+                return {
+                    'dark-bg-color': true,
+                    'dark-shadow-color': true
+                };
         },
         linkColorClass: function () {
-            return {
-                'default-link-color': true
-            }
+            if (this.theme === 'default')
+                return {
+                    'default-link-color': true
+                };
+            else
+                return {
+                    'dark-link-color': true
+                }
         },
         mainTextColorClass: function () {
-            return {
-                'default-text-color-main': true
-            }
+            if (this.theme === 'default')
+                return {
+                    'default-text-color-main': true
+                };
+            else
+                return {
+                    'dark-text-color-main': true
+                }
         },
         subTextColorClass: function () {
-            return {
-                'default-text-color-sub': true
-            }
+            if (this.theme === 'default')
+                return {
+                    'default-text-color-sub': true
+                };
+            else
+                return {
+                    'dark-text-color-sub': true
+                };
+        },
+        borderColorClass: function () {
+            if (this.theme === 'default')
+                return {
+                    'default-border-color': true
+                };
+            else
+                return {
+                    'dark-border-color': true
+                };
         },
         footnoteCols: function () {
             if (this.config.footer.logo)
@@ -138,7 +172,8 @@ export default {
                 return 3;
         },
         ...mapState([
-            'config'
+            'config',
+            'theme'
         ])
     }
 }
@@ -153,6 +188,18 @@ export default {
     background: $default-base-color;
 }
 
+.dark-bg-color {
+    background: $dark-base-color;
+}
+
+.default-shadow-color {
+    box-shadow: 0 -10px 20px $default-shadow-color-light;
+}
+
+.dark-shadow-color {
+    box-shadow: 0 -10px 20px $dark-shadow-color-light;
+}
+
 .default-link-color {
     color: $default-link-color;
 
@@ -165,12 +212,40 @@ export default {
     }
 }
 
+.dark-link-color {
+    color: $dark-link-color;
+
+    &:hover {
+        color: $dark-link-color-light;
+    }
+
+    &:active {
+        color: $dark-link-color-light;
+    }
+}
+
 .default-text-color-main {
     color: $default-text-color;
 }
 
+.dark-text-color-main {
+    color: $dark-text-color;
+}
+
 .default-text-color-sub {
     color: $default-text-color-light;
+}
+
+.dark-text-color-sub {
+    color: $dark-text-color-light;
+}
+
+.default-border-color {;
+    border-top: $default-base-color-dark 1px solid;
+}
+
+.dark-border-color {
+    border-top: $dark-base-color-dark 1px solid;
 }
 
 .font-size-101 {
@@ -181,13 +256,9 @@ export default {
     font-size: 0.9em;
 }
 
-.border-top-1 {
-    border-top: $default-base-color-dark 1px solid;
-}
-
 .custom-footer {
     margin-top: 35px;
-    box-shadow: 0 -15px 20px $default-shadow-color-light;
+    transition: 0.25s;
 }
 
 .custom-footer-container {

@@ -1,5 +1,5 @@
 <template>
-    <b-container tag="section" fluid>
+    <b-container tag="section" fluid class="custom-container" :class="containerColorClass">
         <b-row class="pb-4 pb-md-0">
             <b-col cols="12">
                 <b-row align-v="center" class="jumbotron-logo-row">
@@ -33,7 +33,7 @@
                 </b-row>
             </b-col>
         </b-row>
-        <hr class="custom-hr"/>
+        <hr class="custom-hr" :class="hrColorClass"/>
         <b-row class="pt-3 pt-md-4 pb-3">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
                 <h3 class="custom-section-title" :class="mainTextColorClass">
@@ -45,7 +45,7 @@
                 </div>
             </b-col>
         </b-row>
-        <hr class="custom-hr"/>
+        <hr class="custom-hr" :class="hrColorClass"/>
         <b-row class="pt-3 pt-md-4 pb-5 pb-md-3">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
                 <h3 class="custom-section-title" :class="mainTextColorClass">
@@ -67,7 +67,7 @@
                 </b-card-group>
             </b-col>
         </b-row>
-        <hr class="custom-hr"/>
+        <hr class="custom-hr" :class="hrColorClass"/>
         <b-row class="pt-3 pt-md-4 pb-5">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
                 <h3 class="custom-section-title" :class="mainTextColorClass">
@@ -101,23 +101,59 @@ export default {
             else
                 return '/documentation';
         },
+        containerColorClass: function () {
+            if (this.theme === 'default')
+                return {
+                    'default-container-color': true
+                };
+            else
+                return {
+                    'dark-container-color': true
+                };
+        },
+        hrColorClass: function () {
+            if (this.theme === 'default')
+                return {
+                    'default-hr-color': true
+                };
+            else
+                return {
+                    'dark-hr-color': true
+                };
+        },
         mainTextColorClass: function () {
-            return {
-                'default-text-color-main': true
-            }
+            if (this.theme === 'default')
+                return {
+                    'default-text-color-main': true
+                };
+            else
+                return {
+                    'dark-text-color-main': true
+                };
         },
         subTextColorClass: function () {
-            return {
-                'default-text-color-sub': true
-            }
+            if (this.theme === 'default')
+                return {
+                    'default-text-color-sub': true
+                };
+            else
+                return {
+                    'dark-text-color-sub': true
+                };
         },
         cardColorClass: function () {
-            return {
-                'default-card-color': true
-            }
+            if (this.theme === 'default')
+                return {
+                    'default-card-color': true
+                };
+            else
+                return {
+                    'dark-card-color': true
+                };
         },
         ...mapState([
-            'config'
+            'config',
+            'theme'
         ])
     },
     methods: {
@@ -139,22 +175,54 @@ export default {
 
 @import "src/assets/scss/variables";
 
+.default-container-color {
+    background-color: #ffffff;
+}
+
+.dark-container-color {
+    background-color: $dark-base-color;
+}
+
+.default-hr-color {
+    background-color: $default-base-color-dark;
+}
+
+.dark-hr-color {
+    background-color: $dark-base-color-dark;
+}
+
 .default-text-color-main {
     color: $default-text-color;
+}
+
+.dark-text-color-main {
+    color: $dark-text-color;
 }
 
 .default-text-color-sub {
     color: $default-text-color-light;
 }
 
+.dark-text-color-sub {
+    color: $dark-text-color-light;
+}
+
 .default-card-color::before, ::after {
     background-color: $default-text-color-lighter;
+}
+
+.dark-card-color::before, ::after {
+    background-color: $dark-text-color-lighter;
 }
 
 .colorful-text {
     background: linear-gradient(to right, #7928CA, #FF0080);
     -webkit-background-clip: text;
     color: transparent;
+}
+
+.custom-container {
+    transition: 0.25s;
 }
 
 .custom-hr {

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main-container" :class="bgColorClass">
         <header-bar/>
         <transition name="fade" mode="out-in">
             <router-view></router-view>
@@ -18,8 +18,19 @@ import FooterBar from "@/components/FooterBar";
 export default {
     name: 'App',
     computed: {
+        bgColorClass: function () {
+            if (this.theme === 'default')
+                return {
+                    'default-bg-color': true
+                };
+            else
+                return {
+                    'dark-bg-color': true
+                };
+        },
         ...mapState([
-            'config'
+            'config',
+            'theme'
         ])
     },
     components: {
@@ -31,6 +42,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+@import "src/assets/scss/variables";
 
 .fade-enter-active {
     transition: opacity .3s;
@@ -47,6 +60,18 @@ export default {
 .fade-leave-active {
     opacity: 0;
     transition: opacity .3s;
+}
+
+.default-bg-color {
+    background-color: #ffffff;
+}
+
+.dark-bg-color {
+    background-color: $dark-base-color;
+}
+
+.main-container {
+    transition: 0.25s;
 }
 
 </style>

@@ -50,7 +50,9 @@ const config = {
     },
     header: {
         logo: true,
-        name: true
+        name: true,
+        lang: true,
+        theme: true
     },
     footer: {
         logo: true,

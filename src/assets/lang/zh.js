@@ -4,9 +4,13 @@ const messages = {
     components: {
         headerBar: {
             overview: '概览',
-            demo: '快速入门',
+            demo: '样例',
             documentation: '文档',
-            about: '关于'
+            about: '关于',
+            theme: {
+                default: '默认主题',
+                dark: '暗色主题'
+            }
         },
         footerBar: {
             linkListLeft: {

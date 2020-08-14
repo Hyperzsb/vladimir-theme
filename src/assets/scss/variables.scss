@@ -31,6 +31,37 @@ $default-hint-color: map-get($default-theme-color, 'hint-color');
 $default-warning-color: map-get($default-theme-color, 'warning-color');
 $default-fatal-color: map-get($default-theme-color, 'fatal-color');
 
+// Dark theme colors map
+$dark-theme-color: (
+        'base-color': $oc-gray-9,
+        'base-color-dark': $oc-gray-8,
+        'shadow-color-light':$oc-gray-8,
+        'shadow-color':$oc-gray-6,
+        'link-color-lighter': $oc-gray-2,
+        'link-color-light': $oc-gray-4,
+        'link-color': $oc-gray-6,
+        'text-color-lighter': $oc-gray-6,
+        'text-color-light': $oc-gray-4,
+        'text-color': $oc-gray-2,
+        'hint-color': $oc-teal-3,
+        'warning-color': $oc-yellow-3,
+        'fatal-color': $oc-red-3
+);
+// Dark theme colors variables
+$dark-base-color: map-get($dark-theme-color, 'base-color');
+$dark-base-color-dark: map-get($dark-theme-color, 'base-color-dark');
+$dark-shadow-color-light: map-get($dark-theme-color, 'shadow-color-light');
+$dark-shadow-color: map-get($dark-theme-color, 'shadow-color');
+$dark-link-color-lighter: map-get($dark-theme-color, 'link-color-lighter');
+$dark-link-color-light: map-get($dark-theme-color, 'link-color-light');
+$dark-link-color: map-get($dark-theme-color, 'link-color');
+$dark-text-color-lighter: map-get($dark-theme-color, 'text-color-lighter');
+$dark-text-color-light: map-get($dark-theme-color, 'text-color-light');
+$dark-text-color: map-get($dark-theme-color, 'text-color');
+$dark-hint-color: map-get($dark-theme-color, 'hint-color');
+$dark-warning-color: map-get($dark-theme-color, 'warning-color');
+$dark-fatal-color: map-get($dark-theme-color, 'fatal-color');
+
 
 @mixin mobile {
   @media screen and (max-width: 768px) {

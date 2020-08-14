@@ -7,11 +7,15 @@ Vue.use(Vuex);
 const index = new Vuex.Store({
     state: {
         config,
-        navItem: -1
+        navItem: -1,
+        theme: 'default'
     },
     mutations: {
         changeNavItem(state, index) {
             state.navItem = index;
+        },
+        changeTheme(state, theme) {
+            state.theme = theme;
         }
     }
 });

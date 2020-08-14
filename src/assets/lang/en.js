@@ -5,8 +5,12 @@ let messages = {
         headerBar: {
             overview: 'Overview',
             demo: 'Demo',
-            documentation: 'Documentation',
-            about: 'About'
+            documentation: 'Docs',
+            about: 'About',
+            theme: {
+                default: 'Default theme',
+                dark: 'Dark theme'
+            }
         },
         footerBar: {
             linkListLeft: {

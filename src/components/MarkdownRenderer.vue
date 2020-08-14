@@ -30,8 +30,14 @@ export default {
     },
     data() {
         return {
+            markdownItRenderer: null,
             markDownText: '',
             sidebarVisible: false
+        }
+    },
+    watch: {
+        src: function () {
+            this.markDownText = this.markdownItRenderer.render(this.src);
         }
     },
     computed: {
@@ -122,6 +128,7 @@ export default {
             });
         }
 
+        this.markdownItRenderer = markDownIt;
         // Render the markdown file
         this.markDownText = markDownIt.render(this.src);
     },

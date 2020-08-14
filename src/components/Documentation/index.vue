@@ -2,7 +2,7 @@
     <b-container tag="section" fluid>
         <b-row class="pt-0 pt-md-4 pb-4">
             <b-col cols="10" offset="1" md="8" offset-md="2">
-                <markdown-renderer :src="require('@/assets/markdown/documentation.md')"
+                <markdown-renderer :src="require(`@/assets/markdown/documentation-${this.$i18n.locale}.md`)"
                                    :toc="config.components.documentation.toc"/>
             </b-col>
         </b-row>

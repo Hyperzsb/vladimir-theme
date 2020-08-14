@@ -46,7 +46,7 @@ const config = {
                 }
             }]
         },
-        readMe: require('@/assets/markdown/documentation.md'),
+        readMe: require('@/assets/markdown/documentation-en.md'),
     },
     header: {
         logo: true,

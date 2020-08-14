@@ -1,4 +1,4 @@
-# Team Name
+# About Page
 
 **This is an About Page for the developing team and its members.**
 

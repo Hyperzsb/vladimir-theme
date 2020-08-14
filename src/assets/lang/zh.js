@@ -30,6 +30,10 @@ const messages = {
             whyIs: '为什么选择',
             getStartNow: '立即开始',
             documentation: '帮助文档'
+        },
+        about: {
+            teamMembers: '团队成员',
+            members: []
         }
     },
     project: {
@@ -51,8 +55,6 @@ for (let i = 0; i < projectFeatures.length; i++)
         details: projectFeatures[i].details.zh
     });
 
-export {messages};
-
 messages.components.footerBar.linkListLeft.title = store.state.config.footer.linkListLeft.title.zh;
 
 for (let i = 0; i < store.state.config.footer.linkListLeft.links.length; i++)
@@ -66,3 +68,11 @@ for (let i = 0; i < store.state.config.footer.linkListRight.links.length; i++)
     messages.components.footerBar.linkListRight.links.push({
         name: store.state.config.footer.linkListRight.links[i].name.zh
     });
+
+for (let i = 0; i < store.state.config.components.about.members.length; i++)
+    messages.components.about.members.push({
+        name: store.state.config.components.about.members[i].name.zh,
+        description: store.state.config.components.about.members[i].description.zh
+    })
+
+export {messages};

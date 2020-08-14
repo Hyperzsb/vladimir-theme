@@ -130,24 +130,54 @@ const config = {
             self: true,
             scrollToTop: true,
             members: [{
-                name: 'Member One',
-                description: 'Some description for member one.',
+                name: {
+                    en: 'Member One',
+                    zh: '成员一'
+                },
+                description: {
+                    en: 'Some description for member one.',
+                    zh: '对成员一的一些描述。'
+                },
                 headPortrait: null
             }, {
-                name: 'Member Two',
-                description: 'Some description for member two.',
+                name: {
+                    en: 'Member Two',
+                    zh: '成员二'
+                },
+                description: {
+                    en: 'Some description for member two.',
+                    zh: '对成员二的一些描述。'
+                },
                 headPortrait: null
             }, {
-                name: 'Member Three',
-                description: 'Some description for member three.',
+                name: {
+                    en: 'Member Three',
+                    zh: '成员三'
+                },
+                description: {
+                    en: 'Some description for member three.',
+                    zh: '对成员三的一些描述。'
+                },
                 headPortrait: null
             }, {
-                name: 'Member Four',
-                description: 'Some description for member four.',
+                name: {
+                    en: 'Member Four',
+                    zh: '成员四'
+                },
+                description: {
+                    en: 'Some description for member four.',
+                    zh: '对成员四的一些描述。'
+                },
                 headPortrait: null
             }, {
-                name: 'Member Five',
-                description: 'Some description for member five.',
+                name: {
+                    en: 'Member Five',
+                    zh: '成员五'
+                },
+                description: {
+                    en: 'Some description for member five.',
+                    zh: '对成员五的一些描述。'
+                },
                 headPortrait: null
             }]
         },

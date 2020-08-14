@@ -30,6 +30,10 @@ let messages = {
             whyIs: 'Why is',
             getStartNow: 'Get Start NOW',
             documentation: 'Documentation'
+        },
+        about: {
+            teamMembers: 'Team Members',
+            members: []
         }
     },
     project: {
@@ -64,5 +68,11 @@ for (let i = 0; i < store.state.config.footer.linkListRight.links.length; i++)
     messages.components.footerBar.linkListRight.links.push({
         name: store.state.config.footer.linkListRight.links[i].name.en
     });
+
+for (let i = 0; i < store.state.config.components.about.members.length; i++)
+    messages.components.about.members.push({
+        name: store.state.config.components.about.members[i].name.en,
+        description: store.state.config.components.about.members[i].description.en
+    })
 
 export {messages};

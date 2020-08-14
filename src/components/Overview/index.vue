@@ -5,29 +5,28 @@
                 <b-row align-v="center" class="jumbotron-logo-row">
                     <b-col cols="12" md="5" offset-md="2" order="2" order-md="1">
                         <h1 class="jumbotron-name colorful-text" :class="mainTextColorClass">
-                            {{ config.project.name }}
+                            {{ $t('messages.project.name') }}
                         </h1>
                         <h5 class="jumbotron-description" :class="subTextColorClass">
-                            {{ config.project.description.main }}
+                            {{ $t('messages.project.description.main') }}
                         </h5>
                         <b-badge pill class="jumbotron-version">{{ config.project.version }}</b-badge>
                     </b-col>
                     <b-col cols="12" md="3" order="1" order-md="2" class="pt-3 pt-md-0">
-                        <b-img center class="custom-img"
-                               :src="config.project.logo" :alt="config.project.name"
-                               :title="config.project.name"></b-img>
+                        <b-img center class="custom-img" :src="config.project.logo"
+                               :alt="$t('messages.project.name')" :title="$t('messages.project.name')"></b-img>
                     </b-col>
                 </b-row>
                 <b-row align-v="center" class="jumbotron-button-row">
                     <b-col cols="10" offset="1" md="3" offset-md="3">
                         <b-button pill block size="lg" :to="getStartTo" variant="outline-success">
-                            Get Start
+                            {{ $t('messages.components.overview.getStart') }}
                         </b-button>
                     </b-col>
                     <b-col cols="10" offset="1" md="3" offset-md="0" class="mt-4 mt-md-0">
                         <b-button pill block size="lg" variant="outline-secondary"
                                   :href="config.project.github">
-                            View in GitHub
+                            {{ $t('messages.components.overview.viewInGitHub') }}
                             <b-icon icon="box-arrow-up-right" class="ml-1"></b-icon>
                         </b-button>
                     </b-col>
@@ -38,10 +37,11 @@
         <b-row class="pt-3 pt-md-4 pb-3">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
                 <h3 class="custom-section-title" :class="mainTextColorClass">
-                    What is <span class="colorful-text">{{ config.project.name }}</span>
+                    {{ $t('messages.components.overview.whatIs') }}
+                    <span class="colorful-text">{{ $t('messages.project.name') }}</span>
                 </h3>
                 <div class="custom-section-text" :class="subTextColorClass">
-                    {{ config.project.description.details }}
+                    {{ $t('messages.project.description.details') }}
                 </div>
             </b-col>
         </b-row>
@@ -49,17 +49,18 @@
         <b-row class="pt-3 pt-md-4 pb-5 pb-md-3">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
                 <h3 class="custom-section-title" :class="mainTextColorClass">
-                    Why is <span class="colorful-text">{{ config.project.name }}</span>
+                    {{ $t('messages.components.overview.whyIs') }}
+                    <span class="colorful-text">{{ $t('messages.project.name') }}</span>
                 </h3>
                 <b-card-group deck>
                     <b-card v-for="(feature, index) in config.project.description.features" :key="index" no-body
                             class="custom-card" :class="cardColorClass">
                         <b-card-body>
                             <b-card-title class="custom-card-title" :class="mainTextColorClass">
-                                {{ feature.name }}
+                                {{ $t(`messages.project.description.features[${index}].name`) }}
                             </b-card-title>
                             <b-card-text class="custom-card-text" :class="subTextColorClass">
-                                {{ feature.details }}
+                                {{ $t(`messages.project.description.features[${index}].details`) }}
                             </b-card-text>
                         </b-card-body>
                     </b-card>
@@ -70,15 +71,15 @@
         <b-row class="pt-3 pt-md-4 pb-5">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
                 <h3 class="custom-section-title" :class="mainTextColorClass">
-                    Get Start <span class="colorful-text">NOW</span>
+                    {{ $t('messages.components.overview.getStartNow') }}
                 </h3>
                 <b-button v-if="config.components.demo.self" to="/demo"
                           pill size="lg" variant="outline-success" class="m-3">
-                    Get Start
+                    {{ $t('messages.components.overview.getStart') }}
                 </b-button>
                 <b-button v-if="config.components.documentation.self" to="/documentation"
                           pill size="lg" variant="outline-primary" class="m-3">
-                    Documentation
+                    {{ $t('messages.components.overview.documentation') }}
                 </b-button>
             </b-col>
         </b-row>
@@ -182,7 +183,7 @@ export default {
 
 .jumbotron-name {
     display: block;
-    margin: 0.5rem 0 1.5rem;
+    margin: 0.5rem 0;
     padding: 1rem 0;
     font-size: 5rem;
     font-weight: bold;
@@ -209,7 +210,7 @@ export default {
 
 .jumbotron-version {
     font-size: 1rem;
-    margin: 0.5rem 0 1.5rem;
+    margin: 1rem 0 1.5rem;
 
     @include mobile {
         font-size: 0.8rem;

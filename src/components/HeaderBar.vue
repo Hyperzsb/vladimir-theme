@@ -2,32 +2,32 @@
     <b-navbar tag="header" toggleable="md" sticky
               class="custom-navbar" :class="navbarClass">
         <b-navbar-brand href="/" :active="true" tag="h1"
-                        class="mb-1 custom-nav-brand" :class="navBrandClass">
-            <img v-if="config.header.logo" :src="config.project.logo" :alt="config.project.name"
+                        class="custom-nav-brand" :class="navBrandClass">
+            <img v-if="config.header.logo" :src="config.project.logo" :title="$t('messages.project.name')"
                  class="custom-nav-logo">
-            <b v-if="config.header.name">{{ config.project.name }}</b>
+            <b v-if="config.header.name">{{ $t('messages.project.name') }}</b>
         </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
                 <b-nav-item to="/overview" replace>
                     <b class="pb-1 pt-1 mr-2 custom-button" :class="navItemClass(0)">
-                        {{ $t('messages.Overview') }}
+                        {{ $t('messages.components.headerBar.overview') }}
                     </b>
                 </b-nav-item>
                 <b-nav-item v-if="config.components.demo.self" to="/demo" replace>
                     <b class="pb-1 pt-1 mr-2 custom-button" :class="navItemClass(1)">
-                        {{ $t('messages.Demo') }}
+                        {{ $t('messages.components.headerBar.demo') }}
                     </b>
                 </b-nav-item>
                 <b-nav-item v-if="config.components.documentation.self" to="/documentation" replace>
                     <b class="pb-1 pt-1 mr-2 custom-button" :class="navItemClass(2)">
-                        {{ $t('messages.Documentation') }}
+                        {{ $t('messages.components.headerBar.documentation') }}
                     </b>
                 </b-nav-item>
                 <b-nav-item v-if="config.components.about.self" to="/about" replace>
                     <b class="pb-1 pt-1 mr-2 custom-button" :class="navItemClass(3)">
-                        {{ $t('messages.About') }}
+                        {{ $t('messages.components.headerBar.about') }}
                     </b>
                 </b-nav-item>
                 <b-nav-item v-if="config.project.github" :href="config.project.github" target="_blank">
@@ -40,9 +40,10 @@
                     <template v-slot:button-content>
                         <b-icon icon="globe2" class="custom-icon" :class="iconColorClass"></b-icon>
                     </template>
-                    <b-dropdown-item @click="changeLanguage('en')">English</b-dropdown-item>
-                    <b-dropdown-divider></b-dropdown-divider>
-                    <b-dropdown-item @click="changeLanguage('zh')">简体中文</b-dropdown-item>
+                    <b-dropdown-item v-for="(lang, index) in config.lang" :key="index"
+                                     @click="changeLanguage(lang.abbr)">
+                        {{ lang.fullName }}
+                    </b-dropdown-item>
                 </b-nav-item-dropdown>
             </b-navbar-nav>
         </b-collapse>

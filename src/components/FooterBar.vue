@@ -7,12 +7,12 @@
                         <div class="custom-footer-container">
                             <div class="pb-1 font-weight-bolder font-size-101"
                                  :class="mainTextColorClass">
-                                {{ config.footer.linkListLeft.title }}
+                                {{ $t('messages.components.footerBar.linkListLeft.title') }}
                             </div>
                             <div v-for="(link, index) in config.footer.linkListLeft.links" :key="index"
                                  class="pt-1 pl-3">
                                 <b-link :href="link.href" class="custom-link" :class="linkColorClass">
-                                    {{ link.name }}
+                                    {{ $t(`messages.components.footerBar.linkListLeft.links[${index}].name`) }}
                                 </b-link>
                             </div>
                         </div>
@@ -21,12 +21,12 @@
                         <div class="custom-footer-container">
                             <div class="pb-1 font-weight-bolder font-size-101"
                                  :class="mainTextColorClass">
-                                {{ config.footer.linkListRight.title }}
+                                {{ $t('messages.components.footerBar.linkListRight.title') }}
                             </div>
                             <div v-for="(link, index) in config.footer.linkListRight.links" :key="index"
                                  class="pt-1 pl-3">
                                 <b-link :href="link.href" class="custom-link" :class="linkColorClass">
-                                    {{ link.name }}
+                                    {{ $t(`messages.components.footerBar.linkListRight.links[${index}].name`) }}
                                 </b-link>
                             </div>
                         </div>
@@ -39,12 +39,12 @@
                                 <div class="custom-footer-container">
                                     <div class="pb-1 font-weight-bolder font-size-101"
                                          :class="mainTextColorClass">
-                                        {{ config.footer.linkListLeft.title }}
+                                        {{ $t('messages.components.footerBar.linkListLeft.title') }}
                                     </div>
                                     <div v-for="(link, index) in config.footer.linkListLeft.links" :key="index"
                                          class="pt-1 pl-3">
                                         <b-link :href="link.href" class="custom-link" :class="linkColorClass">
-                                            {{ link.name }}
+                                            {{ $t(`messages.components.footerBar.linkListLeft.links[${index}].name`) }}
                                         </b-link>
                                     </div>
                                 </div>
@@ -53,12 +53,12 @@
                                 <div class="custom-footer-container">
                                     <div class="pb-1 font-weight-bolder font-size-101"
                                          :class="mainTextColorClass">
-                                        {{ config.footer.linkListRight.title }}
+                                        {{ $t('messages.components.footerBar.linkListRight.title') }}
                                     </div>
                                     <div v-for="(link, index) in config.footer.linkListRight.links" :key="index"
                                          class="pt-1 pl-3">
                                         <b-link :href="link.href" class="custom-link" :class="linkColorClass">
-                                            {{ link.name }}
+                                            {{ $t(`messages.components.footerBar.linkListRight.links[${index}].name`) }}
                                         </b-link>
                                     </div>
                                 </div>
@@ -66,20 +66,21 @@
                         </b-row>
                     </b-col>
                     <b-col cols="12" order="1" md="3" order-md="2" class="mb-5 mb-md-0">
-                        <b-img center :src="config.project.logo" :alt="config.project.name"
-                               style="height: 10rem"></b-img>
+                        <b-img :src="config.project.logo" :alt="$t('messages.project.name')"
+                               :title="$t('messages.project.name')" center style="height: 10rem"></b-img>
                     </b-col>
                 </b-row>
                 <b-row class="pt-3">
                     <b-col cols="10" offset="1" :md="footnoteCols" :offset-md="footnoteOffset"
                            class="border-top-1 p-3">
                         <div class="pt-3 font-size-09" :class="subTextColorClass">
-                            Page designed and built with&nbsp;
+                            {{ $t('messages.components.footerBar.footnotes[0]') }}&nbsp;
                             <b-link href="https://cn.vuejs.org/" class="custom-link" :class="linkColorClass">
                                 Vue.js
                             </b-link>
                             <br/>
-                            Currently <b>{{ config.project.version }}</b> Code licensed&nbsp;
+                            {{ $t('messages.components.footerBar.footnotes[1]') }}&nbsp;<b>{{ config.project.version }}</b>
+                            &nbsp;{{ $t('messages.components.footerBar.footnotes[2]') }}&nbsp;
                             <b-link href="https://www.mit-license.org/" class="custom-link" :class="linkColorClass">
                                 MIT
                             </b-link>

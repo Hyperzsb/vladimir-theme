@@ -10,10 +10,12 @@ Currently includes:
 - About page (*WIP*)
 - **Fully Markdown rendering support**
 - **Localization** (maybe some refactor or optimization in the future)
+- **Color themes** (maybe some refactor or optimization in the future)
+  - Default theme (Light theme)
+  - Dark theme 
 
 TODOs:
 
-- Color themes
 - Travis-CI support
 - Unit test
 - Skeleton

@@ -204,10 +204,13 @@ export default {
             this.$cookies.set('InitialLang', lang, 60 * 60);
         },
         onThemeChange() {
-            if (this.theme === 'default')
+            if (this.theme === 'default') {
                 this.changeTheme('dark');
-            else
+                this.$cookies.set('InitialTheme', 'dark', 60 * 60);
+            } else {
                 this.changeTheme('default');
+                this.$cookies.set('InitialTheme', 'default', 60 * 60);
+            }
 
             return false;
         },

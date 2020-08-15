@@ -1,5 +1,5 @@
 <template>
-    <b-container tag="section" fluid>
+    <b-container tag="section" fluid class="custom-container" :class="containerColorClass">
         <b-row class="pt-4 pb-4">
             <b-col cols="10" offset="1" md="8" offset-md="2">
                 <b-row>
@@ -49,6 +49,16 @@ export default {
         }
     },
     computed: {
+        containerColorClass: function () {
+            if (this.theme === 'default')
+                return {
+                    'default-container-color': true
+                };
+            else
+                return {
+                    'dark-container-color': true
+                };
+        },
         mainTextColorClass: function () {
             if (this.theme === 'default')
                 return {
@@ -104,6 +114,14 @@ export default {
 
 @import "src/assets/scss/variables";
 
+.default-container-color {
+    background-color: #ffffff;
+}
+
+.dark-container-color {
+    background-color: $dark-base-color;
+}
+
 .default-text-color-main {
     color: $default-text-color;
 }
@@ -126,6 +144,10 @@ export default {
 
 .dark-list-color {
     background-color: $dark-base-color-dark;
+}
+
+.custom-container {
+    transition: 0.25s;
 }
 
 </style>

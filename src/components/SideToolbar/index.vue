@@ -10,6 +10,7 @@
 
 <script>
 
+import {mapState} from 'vuex'
 import ScrollToTop from "@/components/SideToolbar/ScrollToTop";
 
 export default {
@@ -20,15 +21,28 @@ export default {
     },
     computed: {
         iconColorClass: function () {
-            return {
-                'default-icon-color': true
-            }
+            if (this.theme === 'default')
+                return {
+                    'default-icon-color': true
+                };
+            else
+                return {
+                    'dark-icon-color': true
+                };
         },
         toggleColorClass: function () {
-            return {
-                'default-sidebar-toggle-color': true
-            }
-        }
+            if (this.theme === 'default')
+                return {
+                    'default-sidebar-toggle-color': true
+                };
+            else
+                return {
+                    'dark-sidebar-toggle-color': true
+                };
+        },
+        ...mapState([
+            'theme'
+        ])
     },
     components: {
         ScrollToTop
@@ -45,6 +59,11 @@ export default {
     background-color: rgba($default-link-color, .7);
 }
 
+.dark-icon-color {
+    color: $dark-base-color;
+    background-color: rgba($dark-link-color-lighter, .7);
+}
+
 .default-sidebar-toggle-color {
     box-shadow: 0 0 0.7rem $default-shadow-color;
 
@@ -54,6 +73,18 @@ export default {
 
     &:active {
         box-shadow: 0 0 0.7rem $default-shadow-color;
+    }
+}
+
+.dark-sidebar-toggle-color {
+    box-shadow: 0 0 0.7rem $dark-shadow-color;
+
+    &:hover {
+        box-shadow: 0 0 1.3rem $dark-shadow-color;
+    }
+
+    &:active {
+        box-shadow: 0 0 0.7rem $dark-shadow-color;
     }
 }
 

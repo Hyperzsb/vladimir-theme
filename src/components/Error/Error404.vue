@@ -1,5 +1,5 @@
 <template>
-    <b-container tag="section" fluid>
+    <b-container tag="section" fluid class="custom-container" :class="containerColorClass">
         <b-row>
             <b-col cols="10" offset="1" md="8" offset-md="2" class="error-container">
                 <h1 class="error-name">404<br>Not Found</h1>
@@ -39,19 +39,41 @@ import {mapState, mapMutations} from 'vuex'
 export default {
     name: "Error404",
     computed: {
+        containerColorClass: function () {
+            if (this.theme === 'default')
+                return {
+                    'default-container-color': true
+                };
+            else
+                return {
+                    'dark-container-color': true
+                };
+        },
         descriptionColorClass: function () {
-            return {
-                'default-description-color': true
-            }
+            if (this.theme === 'default')
+                return {
+                    'default-description-color': true
+                };
+            else
+                return {
+                    'dark-description-color': true
+                };
         },
         linkColorClass: function () {
-            return {
-                'error-nav-link': true,
-                'default-link-color': true
-            }
+            if (this.theme === 'default')
+                return {
+                    'error-nav-link': true,
+                    'default-link-color': true
+                };
+            else
+                return {
+                    'error-nav-link': true,
+                    'dark-link-color': true
+                }
         },
         ...mapState([
-            'config'
+            'config',
+            'theme'
         ])
     },
     methods: {
@@ -69,8 +91,20 @@ export default {
 
 @import "src/assets/scss/variables";
 
+.default-container-color {
+    background-color: #ffffff;
+}
+
+.dark-container-color {
+    background-color: $dark-base-color;
+}
+
 .default-description-color {
     color: $default-text-color;
+}
+
+.dark-description-color {
+    color: $dark-text-color;
 }
 
 .default-link-color {
@@ -83,6 +117,22 @@ export default {
     &:active {
         color: $default-link-color-light;
     }
+}
+
+.dark-link-color {
+    color: $dark-link-color;
+
+    &:hover {
+        color: $dark-link-color-light;
+    }
+
+    &:active {
+        color: $dark-link-color-light;
+    }
+}
+
+.custom-container {
+    transition: 0.25s;
 }
 
 .error-container {

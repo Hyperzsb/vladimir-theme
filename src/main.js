@@ -13,7 +13,7 @@ Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 Vue.use(VueCookies);
 
-let initialLang = Vue.$cookies.get('InitialLang') == null ? 'en' : Vue.$cookies.get('InitialLang');
+let initialLang = Vue.$cookies.get('InitialLang') === null ? 'en' : Vue.$cookies.get('InitialLang');
 Vue.use(VueI18n);
 const i18n = new VueI18n({
     locale: initialLang,
@@ -24,6 +24,9 @@ const i18n = new VueI18n({
         'zh': require('@/assets/lang/zh')
     }
 })
+
+let initialTheme = Vue.$cookies.get('InitialTheme') === null ? 'default' : Vue.$cookies.get('InitialTheme');
+store.commit('changeTheme', initialTheme);
 
 Vue.config.productionTip = false
 

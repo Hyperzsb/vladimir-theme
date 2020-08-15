@@ -8,6 +8,8 @@
 
 <script>
 
+import {mapState} from 'vuex'
+
 export default {
     name: "ScrollToTop",
     data() {
@@ -17,15 +19,28 @@ export default {
     },
     computed: {
         iconColorClass: function () {
-            return {
-                'default-icon-color': true
-            }
+            if (this.theme === 'default')
+                return {
+                    'default-icon-color': true
+                };
+            else
+                return {
+                    'dark-icon-color': true
+                };
         },
         shadowColorClass: function () {
-            return {
-                'default-shadow-color': true
-            }
-        }
+            if (this.theme === 'default')
+                return {
+                    'default-shadow-color': true
+                };
+            else
+                return {
+                    'dark-shadow-color': true
+                };
+        },
+        ...mapState([
+            'theme'
+        ])
     },
     methods: {
         scrollToTop: function () {
@@ -57,6 +72,10 @@ export default {
     color: rgba($default-link-color, .7);
 }
 
+.dark-icon-color {
+    color: rgba($dark-link-color-lighter, .7);
+}
+
 .default-shadow-color {
     box-shadow: 0 0 0.7rem $default-shadow-color;
 
@@ -66,6 +85,18 @@ export default {
 
     &:active {
         box-shadow: 0 0 0.7rem $default-shadow-color;
+    }
+}
+
+.dark-shadow-color {
+    box-shadow: 0 0 0.7rem $dark-shadow-color;
+
+    &:hover {
+        box-shadow: 0 0 1.3rem $dark-shadow-color;
+    }
+
+    &:active {
+        box-shadow: 0 0 0.7rem $dark-shadow-color;
     }
 }
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-html="markDownText" v-highlight class="markdown-container"></div>
+        <div v-html="markDownText" v-highlight class="markdown-container" :class="markdownColorClass"></div>
         <b-sidebar v-if="this.toc" id="toc-sidebar" title="Content" shadow backdrop backdrop-variant="dark">
             <div id="toc-container" v-html="tocHtml" class="pl-3"></div>
         </b-sidebar>
@@ -9,16 +9,33 @@
 
 <script>
 
-import Vue from 'vue'
-import hljs from 'highlight.js'
-import 'highlight.js/styles/atom-one-light.css'
+import Vue from 'vue';
+import {mapState} from 'vuex';
+import hljs from 'highlight.js';
 
 Vue.directive('highlight', function (el) {
     let blocks = el.querySelectorAll('pre code');
     blocks.forEach((block) => {
         hljs.highlightBlock(block)
-    })
-})
+    });
+});
+
+function loadStylesheet(url) {
+    let head = document.getElementsByTagName('head')[0];
+    let link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = url;
+    link.setAttribute('name', 'hljs-stylesheet');
+    head.appendChild(link);
+}
+
+function removeStylesheet() {
+    let head = document.getElementsByTagName('head')[0];
+    for (let i = 0; i < head.children.length; i++)
+        if (head.children[i].tagName === 'LINK' && head.children[i].getAttribute('name') === 'hljs-stylesheet')
+            head.removeChild(head.children[i]);
+}
 
 let externalTocHtml = '';
 
@@ -31,6 +48,7 @@ export default {
     data() {
         return {
             markdownItRenderer: null,
+            markdownItClassLoader: null,
             markDownText: '',
             sidebarVisible: false
         }
@@ -38,18 +56,90 @@ export default {
     watch: {
         src: function () {
             this.markDownText = this.markdownItRenderer.render(this.src);
+        },
+        theme: function () {
+            removeStylesheet();
+            if (this.theme === 'default')
+                loadStylesheet('css/atom-one-light.css');
+            else
+                loadStylesheet('css/atom-one-dark.css');
+
+            this.markdownItRenderer.use(this.markdownItClassLoader, this.classMapping);
+            this.markDownText = this.markdownItRenderer.render(this.src);
         }
     },
     computed: {
+        classMapping: function () {
+            if (this.theme === 'default')
+                return {
+                    code: 'markdown-code',
+                    h1: ['markdown-h1', 'default-markdown-h-color'],
+                    h2: ['markdown-h2', 'default-markdown-h-color'],
+                    h3: ['markdown-h3', 'default-markdown-h-color'],
+                    h4: ['markdown-h4', 'default-markdown-h-color'],
+                    h5: ['markdown-h5', 'default-markdown-h-color'],
+                    h6: ['markdown-h6', 'default-markdown-h-color'],
+                    p: ['markdown-p', 'default-markdown-p-color'],
+                    a: ['markdown-a', 'default-markdown-a-color'],
+                    ul: ['markdown-ul', 'default-markdown-list-color'],
+                    ol: ['markdown-ol', 'default-markdown-list-color'],
+                    dl: 'default-markdown-list-color',
+                    li: ['markdown-li', 'default-markdown-list-color'],
+                    img: 'markdown-img',
+                    table: ['markdown-table', 'default-markdown-table-color'],
+                    blockquote: ['markdown-blockquote', 'default-markdown-blockquote-color'],
+                    strong: 'default-markdown-strong-color'
+                };
+            else
+                return {
+                    code: 'markdown-code',
+                    h1: ['markdown-h1', 'dark-markdown-h-color'],
+                    h2: ['markdown-h2', 'dark-markdown-h-color'],
+                    h3: ['markdown-h3', 'dark-markdown-h-color'],
+                    h4: ['markdown-h4', 'dark-markdown-h-color'],
+                    h5: ['markdown-h5', 'dark-markdown-h-color'],
+                    h6: ['markdown-h6', 'dark-markdown-h-color'],
+                    p: ['markdown-p', 'dark-markdown-p-color'],
+                    a: ['markdown-a', 'dark-markdown-a-color'],
+                    ul: ['markdown-ul', 'dark-markdown-list-color'],
+                    ol: ['markdown-ol', 'dark-markdown-list-color'],
+                    dl: 'dark-markdown-list-color',
+                    li: ['markdown-li', 'dark-markdown-list-color'],
+                    img: 'markdown-img',
+                    table: ['markdown-table', 'dark-markdown-table-color'],
+                    blockquote: ['markdown-blockquote', 'dark-markdown-blockquote-color'],
+                    strong: 'dark-markdown-strong-color'
+                };
+        },
         tocHtml: function () {
             return externalTocHtml;
-        }
+        },
+        markdownColorClass: function () {
+            if (this.theme === 'default')
+                return {
+                    'default-markdown-color': true
+                };
+            else
+                return {
+                    'dark-markdown-color': true
+                };
+        },
+        ...mapState([
+            'theme'
+        ])
     },
     created() {
+        removeStylesheet();
+        if (this.theme === 'default')
+            loadStylesheet('css/atom-one-light.css');
+        else
+            loadStylesheet('css/atom-one-dark.css');
+
         // markdown-it plugins
         const markdownItAbbr = require('markdown-it-abbr');
         const markdownItAttrs = require('markdown-it-attrs');
         const markdownItClass = require('@toycode/markdown-it-class');
+        this.markdownItClassLoader = markdownItClass;
         const markdownItContainer = require('markdown-it-container');
         const markdownItDeflist = require('markdown-it-deflist');
         const markdownItEmoji = require('markdown-it-emoji');
@@ -58,27 +148,6 @@ export default {
         const markdownItMark = require('markdown-it-mark');
         const markdownItSub = require('markdown-it-sub');
         const markdownItSup = require('markdown-it-sup');
-
-        // Class Mapping for markdown-it-class plugin
-        const classMapping = {
-            code: 'markdown-code',
-            h1: ['markdown-h1', 'default-markdown-h-color'],
-            h2: ['markdown-h2', 'default-markdown-h-color'],
-            h3: ['markdown-h3', 'default-markdown-h-color'],
-            h4: ['markdown-h4', 'default-markdown-h-color'],
-            h5: ['markdown-h5', 'default-markdown-h-color'],
-            h6: ['markdown-h6', 'default-markdown-h-color'],
-            p: ['markdown-p', 'default-markdown-p-color'],
-            a: ['markdown-a', 'default-markdown-a-color'],
-            ul: ['markdown-ul', 'default-markdown-list-color'],
-            ol: ['markdown-ol', 'default-markdown-list-color'],
-            li: ['markdown-li', 'default-markdown-list-color'],
-            hr: ['markdown-hr', 'default-markdown-hr-color'],
-            img: 'markdown-img',
-            table: ['markdown-table', 'default-markdown-table-color'],
-            blockquote: ['markdown-blockquote', 'default-markdown-blockquote-color'],
-            strong: 'default-markdown-strong-color'
-        };
 
         // markdown-it config
         const markDownIt = require('markdown-it')({
@@ -100,7 +169,7 @@ export default {
             }
         }).use(markdownItAbbr)
             .use(markdownItAttrs)
-            .use(markdownItClass, classMapping)
+            .use(markdownItClass, this.classMapping)
             .use(markdownItContainer, 'hint')
             .use(markdownItContainer, 'warning')
             .use(markdownItContainer, 'fatal')
@@ -147,7 +216,7 @@ export default {
                     behavior: "smooth"
                 });
                 return false;
-            }
+            };
         }
 
         // Footnote back-to references links
@@ -179,7 +248,7 @@ export default {
                         behavior: "smooth"
                     });
                     return false;
-                }
+                };
                 return null;
             }
 

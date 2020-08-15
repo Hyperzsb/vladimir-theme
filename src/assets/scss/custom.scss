@@ -36,35 +36,124 @@ code {
 
 // Markdown classes
 
+.default-markdown-color {
+  hr {
+    background-color: $default-base-color-dark;
+  }
+
+  .hint {
+    background-color: $default-hint-color;
+  }
+
+  .warning {
+    background-color: $default-warning-color;
+  }
+
+  .fatal {
+    background-color: $default-fatal-color;
+  }
+}
+
+.dark-markdown-color {
+  hr {
+    background-color: $dark-base-color-darker;
+  }
+
+  .hint {
+    background-color: $dark-hint-color;
+
+    abbr, address, article, aside, b, big, button, canvas, caption, center, cite, dd, div, dfn, dl, dt,
+    em, form, h1, h2, h3, h4, h5, h6, i, ins, kbd, label, legend, li, link, mark, ol, p, pre, q,
+    s, samp, section, small, span, strike, strong, sub,
+    table, tbody, td, textarea, tfoot, th, thead, time, title, tr, tt, u, ul, var {
+      color: $default-text-color !important;
+    }
+  }
+
+  .warning {
+    background-color: $dark-warning-color;
+
+    abbr, address, article, aside, b, big, button, canvas, caption, center, cite, dd, div, dfn, dl, dt,
+    em, form, h1, h2, h3, h4, h5, h6, i, ins, kbd, label, legend, li, link, mark, ol, p, pre, q,
+    s, samp, section, small, span, strike, strong, sub,
+    table, tbody, td, textarea, tfoot, th, thead, time, title, tr, tt, u, ul, var {
+      color: $default-text-color !important;
+    }
+  }
+
+  .fatal {
+    background-color: $dark-fatal-color;
+
+    abbr, address, article, aside, b, big, button, canvas, caption, center, cite, dd, div, dfn, dl, dt,
+    em, form, h1, h2, h3, h4, h5, h6, i, ins, kbd, label, legend, li, link, mark, ol, p, pre, q,
+    s, samp, section, small, span, strike, strong, sub,
+    table, tbody, td, textarea, tfoot, th, thead, time, title, tr, tt, u, ul, var {
+      color: $default-text-color !important;
+    }
+  }
+}
+
 .default-markdown-h-color {
-  color: map-get($default-theme-color, 'text-color');
+  color: $default-text-color;
+}
+
+.dark-markdown-h-color {
+  color: $dark-text-color;
 }
 
 .default-markdown-p-color {
-  color: map-get($default-theme-color, 'text-color-light');
+  color: $default-text-color-light;
+}
+
+.dark-markdown-p-color {
+  color: $dark-text-color-light;
 }
 
 .default-markdown-a-color {
-  color: map-get($default-theme-color, 'link-color')
+  color: $default-link-color;
+}
+
+.dark-markdown-a-color {
+  color: $dark-link-color;
 }
 
 .default-markdown-a-color:hover {
-  color: map-get($default-theme-color, 'link-color-light')
+  color: $default-link-color-light;
+}
+
+.dark-markdown-a-color:hover {
+  color: $dark-link-color-light;
 }
 
 .default-markdown-list-color {
-  color: map-get($default-theme-color, 'text-color-light');
+  color: $default-text-color-light;
+}
+
+.dark-markdown-list-color {
+  color: $dark-text-color-light;
 }
 
 .default-markdown-table-color {
   th {
-    color: map-get($default-theme-color, 'text-color-light');
-    border-color: map-get($default-theme-color, 'text-color-light');;
+    color: $default-text-color-light;
+    border-color: $default-text-color-light;
   }
 
   tr, td {
-    color: map-get($default-theme-color, 'text-color-light');
-    border-color: map-get($default-theme-color, 'text-color-light');;
+    color: $default-text-color-light;
+    border-color: $default-text-color-light;
+  }
+}
+
+.dark-markdown-table-color {
+  th {
+    color: $dark-text-color-light;
+    border-color: $dark-text-color-light;
+  }
+
+  tr, td {
+    color: $dark-text-color-light;
+    border-color: $dark-text-color-light;
   }
 }
 
@@ -73,12 +162,25 @@ code {
   em, form, h1, h2, h3, h4, h5, h6, i, ins, kbd, label, legend, li, link, mark, ol, p, pre, q,
   s, samp, section, small, span, strike, strong, sub,
   table, tbody, td, textarea, tfoot, th, thead, time, title, tr, tt, u, ul, var {
-    color: map-get($default-theme-color, 'text-color-lighter');
+    color: $default-text-color-lighter;
+  }
+}
+
+.dark-markdown-blockquote-color {
+  abbr, address, article, aside, b, big, button, canvas, caption, center, cite, dd, div, dfn, dl, dt,
+  em, form, h1, h2, h3, h4, h5, h6, i, ins, kbd, label, legend, li, link, mark, ol, p, pre, q,
+  s, samp, section, small, span, strike, strong, sub,
+  table, tbody, td, textarea, tfoot, th, thead, time, title, tr, tt, u, ul, var {
+    color: $dark-text-color-lighter;
   }
 }
 
 .default-markdown-strong-color {
-  color: map-get($default-theme-color, 'text-color');
+  color: $default-text-color;
+}
+
+.dark-markdown-strong-color {
+  color: $dark-text-color;
 }
 
 .markdown-h1 {
@@ -247,18 +349,6 @@ code {
   p {
     margin: 0;
   }
-}
-
-.markdown-container .hint {
-  background-color: map-get($default-theme-color, 'hint-color');
-}
-
-.markdown-container .warning {
-  background-color: map-get($default-theme-color, 'warning-color');
-}
-
-.markdown-container .fatal {
-  background-color: map-get($default-theme-color, 'fatal-color');
 }
 
 // Toc lists

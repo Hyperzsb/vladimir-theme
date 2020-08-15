@@ -188,7 +188,7 @@ export default {
 }
 
 .dark-hr-color {
-    background-color: $dark-base-color-dark;
+    background-color: $dark-base-color-darker;
 }
 
 .default-text-color-main {

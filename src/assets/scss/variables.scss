@@ -35,6 +35,7 @@ $default-fatal-color: map-get($default-theme-color, 'fatal-color');
 $dark-theme-color: (
         'base-color': $oc-gray-9,
         'base-color-dark': $oc-gray-8,
+        'base-color-darker': $oc-gray-6,
         'shadow-color-light':$oc-gray-8,
         'shadow-color':$oc-gray-6,
         'link-color-lighter': $oc-gray-2,
@@ -50,6 +51,7 @@ $dark-theme-color: (
 // Dark theme colors variables
 $dark-base-color: map-get($dark-theme-color, 'base-color');
 $dark-base-color-dark: map-get($dark-theme-color, 'base-color-dark');
+$dark-base-color-darker: map-get($dark-theme-color, 'base-color-darker');
 $dark-shadow-color-light: map-get($dark-theme-color, 'shadow-color-light');
 $dark-shadow-color: map-get($dark-theme-color, 'shadow-color');
 $dark-link-color-lighter: map-get($dark-theme-color, 'link-color-lighter');

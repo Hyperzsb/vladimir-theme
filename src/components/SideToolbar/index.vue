@@ -1,16 +1,14 @@
 <template>
     <div class="custom-toolbar">
         <scroll-to-top v-if="this.scrollToTop" class="mb-3"/>
-        <div v-if="this.toc" v-b-toggle.toc-sidebar
-             class="custom-toggle" :class="toggleColorClass">
-            <b-icon icon="justify" class="rounded-circle p-2 custom-icon" :class="iconColorClass"></b-icon>
+        <div v-if="this.toc" v-b-toggle.toc-sidebar class="custom-toggle side-toolbar-toggle-color">
+            <b-icon icon="justify" class="rounded-circle p-2 custom-icon side-toolbar-icon-bg-color"></b-icon>
         </div>
     </div>
 </template>
 
 <script>
 
-import {mapState} from 'vuex'
 import ScrollToTop from "@/components/SideToolbar/ScrollToTop";
 
 export default {
@@ -18,31 +16,6 @@ export default {
     props: {
         scrollToTop: Boolean,
         toc: Boolean
-    },
-    computed: {
-        iconColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-icon-color': true
-                };
-            else
-                return {
-                    'dark-icon-color': true
-                };
-        },
-        toggleColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-sidebar-toggle-color': true
-                };
-            else
-                return {
-                    'dark-sidebar-toggle-color': true
-                };
-        },
-        ...mapState([
-            'theme'
-        ])
     },
     components: {
         ScrollToTop
@@ -52,39 +25,9 @@ export default {
 
 <style lang="scss" scoped>
 
-@import "src/assets/scss/variables";
-
-.default-icon-color {
-    color: $default-base-color;
-    background-color: rgba($default-link-color, .7);
-}
-
-.dark-icon-color {
-    color: $dark-base-color;
-    background-color: rgba($dark-link-color-lighter, .7);
-}
-
-.default-sidebar-toggle-color {
-    box-shadow: 0 0 0.7rem $default-shadow-color;
-
-    &:hover {
-        box-shadow: 0 0 1.3rem $default-shadow-color;
-    }
-
-    &:active {
-        box-shadow: 0 0 0.7rem $default-shadow-color;
-    }
-}
-
-.dark-sidebar-toggle-color {
-    box-shadow: 0 0 0.7rem $dark-shadow-color;
-
-    &:hover {
-        box-shadow: 0 0 1.3rem $dark-shadow-color;
-    }
-
-    &:active {
-        box-shadow: 0 0 0.7rem $dark-shadow-color;
+@mixin mobile {
+    @media screen and (max-width: 768px) {
+        @content;
     }
 }
 

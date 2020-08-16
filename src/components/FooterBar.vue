@@ -1,5 +1,5 @@
 <template>
-    <b-container tag="footer" fluid class="text-center transition-25 bg-color footer-shadow-color">
+    <b-container tag="footer" fluid class="mt-5 text-center transition-25 bg-color footer-shadow-color">
         <b-row class="pt-5 pb-1">
             <b-col cols="12" class="p-3">
                 <b-row v-if="!config.footer.logo" class="pt-3 pb-3 pl-4 pl-md-0 pr-4 pr-md-0 mt-3 mb-5 text-left">

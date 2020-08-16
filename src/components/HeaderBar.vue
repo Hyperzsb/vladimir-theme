@@ -1,6 +1,6 @@
 <template>
     <b-navbar tag="header" toggleable="md" sticky
-              class="custom-navbar transition-25" :class="headerBarClass">
+              class="custom-navbar transition-25 header-bg-color" :class="headerBarClass">
         <b-navbar-brand href="/" :active="true" tag="h1">
             <img v-if="config.header.logo" :src="config.project.logo" :title="$t('messages.project.name')"
                  class="custom-nav-logo">
@@ -94,13 +94,10 @@ export default {
         headerBarClass: function () {
             if (this.isScrolled)
                 return {
-                    'header-shadow-color': true,
-                    'header-after-bg-color': true
-                }
+                    'header-shadow-color': true
+                };
             else
-                return {
-                    'header-before-bg-color': true
-                }
+                return null;
         },
         themeIcon: function () {
             if (this.theme === 'default')

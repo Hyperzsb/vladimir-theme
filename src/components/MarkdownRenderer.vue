@@ -1,7 +1,8 @@
 <template>
     <div>
-        <div v-html="markDownText" v-highlight class="markdown-container" :class="markdownColorClass"></div>
-        <b-sidebar v-if="this.toc" id="toc-sidebar" title="Content" shadow backdrop backdrop-variant="dark">
+        <div v-html="markDownText" v-highlight class="markdown-container markdown-color"></div>
+        <b-sidebar v-if="this.toc" id="toc-sidebar" title="Content" shadow backdrop backdrop-variant="dark"
+                   header-class="sidebar-header-color" body-class="sidebar-body-color">
             <div id="toc-container" v-html="tocHtml" class="pl-3"></div>
         </b-sidebar>
     </div>
@@ -48,7 +49,6 @@ export default {
     data() {
         return {
             markdownItRenderer: null,
-            markdownItClassLoader: null,
             markDownText: '',
             sidebarVisible: false
         }
@@ -64,65 +64,12 @@ export default {
             else
                 loadStylesheet('css/atom-one-dark.css');
 
-            this.markdownItRenderer.use(this.markdownItClassLoader, this.classMapping);
             this.markDownText = this.markdownItRenderer.render(this.src);
         }
     },
     computed: {
-        classMapping: function () {
-            if (this.theme === 'default')
-                return {
-                    code: 'markdown-code',
-                    h1: ['markdown-h1', 'default-markdown-h-color'],
-                    h2: ['markdown-h2', 'default-markdown-h-color'],
-                    h3: ['markdown-h3', 'default-markdown-h-color'],
-                    h4: ['markdown-h4', 'default-markdown-h-color'],
-                    h5: ['markdown-h5', 'default-markdown-h-color'],
-                    h6: ['markdown-h6', 'default-markdown-h-color'],
-                    p: ['markdown-p', 'default-markdown-p-color'],
-                    a: ['markdown-a', 'default-markdown-a-color'],
-                    ul: ['markdown-ul', 'default-markdown-list-color'],
-                    ol: ['markdown-ol', 'default-markdown-list-color'],
-                    dl: 'default-markdown-list-color',
-                    li: ['markdown-li', 'default-markdown-list-color'],
-                    img: 'markdown-img',
-                    table: ['markdown-table', 'default-markdown-table-color'],
-                    blockquote: ['markdown-blockquote', 'default-markdown-blockquote-color'],
-                    strong: 'default-markdown-strong-color'
-                };
-            else
-                return {
-                    code: 'markdown-code',
-                    h1: ['markdown-h1', 'dark-markdown-h-color'],
-                    h2: ['markdown-h2', 'dark-markdown-h-color'],
-                    h3: ['markdown-h3', 'dark-markdown-h-color'],
-                    h4: ['markdown-h4', 'dark-markdown-h-color'],
-                    h5: ['markdown-h5', 'dark-markdown-h-color'],
-                    h6: ['markdown-h6', 'dark-markdown-h-color'],
-                    p: ['markdown-p', 'dark-markdown-p-color'],
-                    a: ['markdown-a', 'dark-markdown-a-color'],
-                    ul: ['markdown-ul', 'dark-markdown-list-color'],
-                    ol: ['markdown-ol', 'dark-markdown-list-color'],
-                    dl: 'dark-markdown-list-color',
-                    li: ['markdown-li', 'dark-markdown-list-color'],
-                    img: 'markdown-img',
-                    table: ['markdown-table', 'dark-markdown-table-color'],
-                    blockquote: ['markdown-blockquote', 'dark-markdown-blockquote-color'],
-                    strong: 'dark-markdown-strong-color'
-                };
-        },
         tocHtml: function () {
             return externalTocHtml;
-        },
-        markdownColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-markdown-color': true
-                };
-            else
-                return {
-                    'dark-markdown-color': true
-                };
         },
         ...mapState([
             'theme'
@@ -139,7 +86,6 @@ export default {
         const markdownItAbbr = require('markdown-it-abbr');
         const markdownItAttrs = require('markdown-it-attrs');
         const markdownItClass = require('@toycode/markdown-it-class');
-        this.markdownItClassLoader = markdownItClass;
         const markdownItContainer = require('markdown-it-container');
         const markdownItDeflist = require('markdown-it-deflist');
         const markdownItEmoji = require('markdown-it-emoji');
@@ -148,6 +94,27 @@ export default {
         const markdownItMark = require('markdown-it-mark');
         const markdownItSub = require('markdown-it-sub');
         const markdownItSup = require('markdown-it-sup');
+
+        // Class Mapping for markdown-it-class plugin
+        const classMapping = {
+            code: 'markdown-code',
+            h1: ['markdown-h1', 'markdown-h-color'],
+            h2: ['markdown-h2', 'markdown-h-color'],
+            h3: ['markdown-h3', 'markdown-h-color'],
+            h4: ['markdown-h4', 'markdown-h-color'],
+            h5: ['markdown-h5', 'markdown-h-color'],
+            h6: ['markdown-h6', 'markdown-h-color'],
+            p: ['markdown-p', 'markdown-p-color'],
+            a: ['markdown-a', 'markdown-a-color'],
+            ul: ['markdown-ul', 'markdown-list-color'],
+            ol: ['markdown-ol', 'markdown-list-color'],
+            dl: 'markdown-list-color',
+            li: ['markdown-li', 'markdown-list-color'],
+            img: 'markdown-img',
+            table: ['markdown-table', 'markdown-table-color'],
+            blockquote: ['markdown-blockquote', 'markdown-blockquote-color'],
+            strong: 'markdown-strong-color'
+        };
 
         // markdown-it config
         const markDownIt = require('markdown-it')({
@@ -169,7 +136,7 @@ export default {
             }
         }).use(markdownItAbbr)
             .use(markdownItAttrs)
-            .use(markdownItClass, this.classMapping)
+            .use(markdownItClass, classMapping)
             .use(markdownItContainer, 'hint')
             .use(markdownItContainer, 'warning')
             .use(markdownItContainer, 'fatal')
@@ -188,7 +155,7 @@ export default {
                 tocClassName: 'markdown-toc',
                 anchorLinkSymbol: '¶',
                 anchorLinkBefore: false,
-                anchorClassName: 'markdown-a markdown-anchor default-markdown-a-color',
+                anchorClassName: 'markdown-anchor markdown-a-color',
             });
             markDownIt.set({
                 tocCallback: function (tocMarkdown, tocArray, tocHtml) {
@@ -225,10 +192,6 @@ export default {
         for (let i = 0; i < footnoteBackRefLinks.length; i++) {
             let link = footnoteBackRefLinks.item(i);
             link.onclick = function () {
-                // document.getElementById(link.attributes['href'].value.substr(1)).scrollIntoView({
-                //     behavior: 'smooth',
-                //     block: 'center'
-                // })
                 window.scrollTo({
                     top: document.getElementById(link.attributes['href'].value.substr(1)).parentNode.offsetTop,
                     behavior: "smooth"

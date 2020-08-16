@@ -1,7 +1,7 @@
 <template>
     <transition name="fade" mode="out-in">
-        <div v-if="isScrolled" class="scroll-to-top" :class="shadowColorClass" @click="scrollToTop()">
-            <b-icon icon="arrow-up-circle-fill" class="custom-icon" :class="iconColorClass"></b-icon>
+        <div v-if="isScrolled" class="scroll-to-top side-toolbar-toggle-color" @click="scrollToTop()">
+            <b-icon icon="arrow-up-circle-fill" class="custom-icon side-toolbar-icon-color"></b-icon>
         </div>
     </transition>
 </template>
@@ -18,26 +18,6 @@ export default {
         }
     },
     computed: {
-        iconColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-icon-color': true
-                };
-            else
-                return {
-                    'dark-icon-color': true
-                };
-        },
-        shadowColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-shadow-color': true
-                };
-            else
-                return {
-                    'dark-shadow-color': true
-                };
-        },
         ...mapState([
             'theme'
         ])
@@ -65,40 +45,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-@import "../../assets/scss/variables";
-
-.default-icon-color {
-    color: rgba($default-link-color, .7);
-}
-
-.dark-icon-color {
-    color: rgba($dark-link-color-lighter, .7);
-}
-
-.default-shadow-color {
-    box-shadow: 0 0 0.7rem $default-shadow-color;
-
-    &:hover {
-        box-shadow: 0 0 1.3rem $default-shadow-color;
-    }
-
-    &:active {
-        box-shadow: 0 0 0.7rem $default-shadow-color;
-    }
-}
-
-.dark-shadow-color {
-    box-shadow: 0 0 0.7rem $dark-shadow-color;
-
-    &:hover {
-        box-shadow: 0 0 1.3rem $dark-shadow-color;
-    }
-
-    &:active {
-        box-shadow: 0 0 0.7rem $dark-shadow-color;
-    }
-}
 
 .fade-enter-active {
     transition: opacity .25s;

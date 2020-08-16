@@ -15,6 +15,8 @@
     --fatal-color: #fa5252; /* oc-red-6 */
 }
 
+/* General style class */
+
 .bg-color {
     background-color: var(--base-color);
 }
@@ -51,12 +53,10 @@
     color: var(--link-color-light);
 }
 
-.header-before-bg-color {
-    background-color: rgba(var(--base-color), 1);
-}
+/* Header style class */
 
-.header-after-bg-color {
-    background-color: rgba(var(--base-color-dark), .5);
+.header-bg-color {
+    background-color: var(--base-color);
 }
 
 .header-shadow-color {
@@ -79,6 +79,8 @@
     border-bottom-color: var(--link-color-light);
 }
 
+/* Footer style class */
+
 .footer-shadow-color {
     box-shadow: 0 -10px 20px var(--shadow-color-light);
 }
@@ -87,10 +89,113 @@
     border-top: var(--base-color-dark) 1px solid;
 }
 
+/* Side toolbar style classes */
+
+.side-toolbar-toggle-color, .side-toolbar-toggle-color:active {
+    box-shadow: 0 0 1rem var(--shadow-color);
+}
+
+.side-toolbar-toggle-color:hover {
+    box-shadow: 0 0 2rem var(--shadow-color);
+}
+
+.side-toolbar-icon-color {
+    color: rgba(233, 236, 239, .7);
+}
+
+.side-toolbar-icon-bg-color {
+    color: var(--base-color);
+    background-color: rgba(233, 236, 239, .7);
+}
+
+/* Overview style class */
+
 .overview-card-pseudo-color:before, .overview-card-pseudo-color:after {
     background-color: var(--text-color-lighter);
 }
 
+/* About style class */
+
 .about-list-color {
     background-color: var(--base-color-dark);
+}
+
+/* Markdown style classes */
+
+.markdown-h-color {
+    color: var(--text-color);
+}
+
+.markdown-p-color {
+    color: var(--text-color-light);
+}
+
+.markdown-a-color {
+    color: var(--link-color);
+}
+
+.markdown-a-color:hover, .markdown-a-color:active {
+    color: var(--link-color-light);
+}
+
+.markdown-list-color {
+    color: var(--text-color-light);
+}
+
+.markdown-table-color th, .markdown-table-color tr, .markdown-table-color td {
+    color: var(--text-color-light);
+    border-color: var(--text-color-light);
+}
+
+.markdown-blockquote-color * {
+    color: var(--text-color-lighter);
+}
+
+.markdown-strong-color {
+    color: var(--text-color);
+}
+
+.markdown-color hr {
+    background-color: var(--base-color-dark);
+}
+
+.markdown-color .hint {
+    background-color: var(--hint-color);
+}
+
+.markdown-color .hint * {
+    color: var(--base-color);
+}
+
+.markdown-color .warning {
+    background-color: var(--warning-color);
+}
+
+.markdown-color .warning * {
+    color: var(--base-color);
+}
+
+.markdown-color .fatal {
+    background-color: var(--fatal-color);
+}
+
+.markdown-color .fatal * {
+    color: var(--base-color);
+}
+
+.footnotes-list {
+    color: var(--text-color-light);
+}
+
+.sidebar-header-color {
+    color: var(--text-color);
+    background-color: var(--base-color-dark);
+}
+
+.sidebar-header-color .close {
+    color: var(--text-color) !important;
+}
+
+.sidebar-body-color {
+    background-color: var(--base-color);
 }

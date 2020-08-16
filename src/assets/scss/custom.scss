@@ -1,11 +1,7 @@
-@import "variables";
-
-$base-font: "Noto Serif", "PT Serif", source-han-serif-sc, "Source Han Serif SC", "Source Han Serif CN", "Source Han Serif TC",
-"Source Han Serif TW", "Source Han Serif", "Songti SC", SimSon, serif;
-$code-font: 'Menlo', 'Courier New', 'Monaco', 'Spoqa Han Sans', monospace;
-
-#body {
-  font-family: $base-font;
+@mixin mobile {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
 }
 
 code {
@@ -19,9 +15,10 @@ code {
   transition: 0.25s;
 }
 
-// Custom Scrollbar
+// Custom Scrollbar classes
+
 ::selection {
-  background: #ced4da;
+  // background-color: #ced4da;
 }
 
 ::-webkit-scrollbar {
@@ -31,12 +28,12 @@ code {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: #ced4da;
+  // background-color: #ced4da;
 }
 
 ::-webkit-scrollbar-track {
   border-radius: 10px;
-  background: #f8f9fa;
+  // background-color: #f8f9fa;
 }
 
 
@@ -185,7 +182,7 @@ code {
   display: block;
   padding-left: 1.5rem;
   margin: 1rem 0;
-  border-left: map-get($default-theme-color, 'base-color-dark') 5px solid;
+  border-left: #adb5bd 5px solid;
 }
 
 .markdown-anchor {
@@ -195,6 +192,21 @@ code {
 }
 
 .markdown-block-code {
+  margin: 1.5rem 0;
+  border-radius: 7px;
+
+  & code.hljs {
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+pre.hljs {
+  padding: 0;
+}
+
+code.hljs {
+  padding: 1rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 7px;
 }
@@ -219,9 +231,19 @@ code {
 }
 
 // Toc lists
-#toc-container .markdown-ul, .markdown-ol {
-  margin: 0.7rem 0 0.7rem 0;
-  padding-inline-start: 20px;
+#toc-container {
+  & .markdown-ul, & .markdown-ol {
+    margin: 0.7rem 0 0.7rem 0;
+    padding-inline-start: 20px;
+  }
+
+  & .markdown-a {
+    text-decoration: none;
+
+    &:after {
+      content: '';
+    }
+  }
 }
 
 // Bootstrap style override

@@ -240,7 +240,11 @@ export default {
 
 <style lang="scss" scoped>
 
-@import "src/assets/scss/variables";
+@mixin mobile {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
+}
 
 .markdown-container {
     line-height: 2rem;

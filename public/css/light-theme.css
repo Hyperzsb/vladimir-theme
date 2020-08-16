@@ -15,6 +15,20 @@
     --fatal-color: #ffa8a8; /* oc-red-3 */
 }
 
+/* Scrollbar style */
+
+::selection {
+    background-color: var(--base-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--base-color-darker);
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--base-color);
+}
+
 /* General style classes */
 
 .bg-color {
@@ -56,7 +70,7 @@
 /* Header style classes */
 
 .header-bg-color {
-    background-color: var(--base-color);
+    background-color: rgba(248, 249, 250, .5);
 }
 
 .header-shadow-color {

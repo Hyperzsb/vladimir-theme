@@ -13,6 +13,12 @@ code {
   margin: 0 0.2rem;
 }
 
+// General style class
+
+.transition-25 {
+  transition: 0.25s;
+}
+
 // Custom Scrollbar
 ::selection {
   background: #ced4da;

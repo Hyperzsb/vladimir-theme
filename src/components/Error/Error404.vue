@@ -1,29 +1,29 @@
 <template>
-    <b-container tag="section" fluid class="custom-container" :class="containerColorClass">
+    <b-container tag="section" fluid class="transition-25 bg-color">
         <b-row>
             <b-col cols="10" offset="1" md="8" offset-md="2" class="error-container">
                 <h1 class="error-name">404<br>Not Found</h1>
-                <b class="error-description" :class="descriptionColorClass">
+                <b class="error-description text-color">
                     There is no such page on the site.
                 </b>
-                <b class="error-description" :class="descriptionColorClass">
+                <b class="error-description text-color">
                     Please check your input URL, or navigate to:
                 </b>
                 <b-nav class="error-nav" align="center">
                     <b-nav-item to="/overview"
-                                :link-classes="linkColorClass">
+                                link-classes="link-color">
                         Overview
                     </b-nav-item>
                     <b-nav-item v-if="config.components.demo.self" to="/demo"
-                                :link-classes="linkColorClass">
+                                link-classes="link-color">
                         Demo
                     </b-nav-item>
                     <b-nav-item v-if="config.components.documentation.self" to="/documentation"
-                                :link-classes="linkColorClass">
+                                link-classes="link-color">
                         Documentation
                     </b-nav-item>
                     <b-nav-item v-if="config.components.about.self" to="/about"
-                                :link-classes="linkColorClass">
+                                link-classes="link-color">
                         About
                     </b-nav-item>
                 </b-nav>
@@ -39,41 +39,8 @@ import {mapState, mapMutations} from 'vuex'
 export default {
     name: "Error404",
     computed: {
-        containerColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-container-color': true
-                };
-            else
-                return {
-                    'dark-container-color': true
-                };
-        },
-        descriptionColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-description-color': true
-                };
-            else
-                return {
-                    'dark-description-color': true
-                };
-        },
-        linkColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'error-nav-link': true,
-                    'default-link-color': true
-                };
-            else
-                return {
-                    'error-nav-link': true,
-                    'dark-link-color': true
-                }
-        },
         ...mapState([
             'config',
-            'theme'
         ])
     },
     methods: {
@@ -89,50 +56,10 @@ export default {
 
 <style lang="scss" scoped>
 
-@import "src/assets/scss/variables";
-
-.default-container-color {
-    background-color: #ffffff;
-}
-
-.dark-container-color {
-    background-color: $dark-base-color;
-}
-
-.default-description-color {
-    color: $default-text-color;
-}
-
-.dark-description-color {
-    color: $dark-text-color;
-}
-
-.default-link-color {
-    color: $default-link-color;
-
-    &:hover {
-        color: $default-link-color-light;
+@mixin mobile {
+    @media screen and (max-width: 768px) {
+        @content;
     }
-
-    &:active {
-        color: $default-link-color-light;
-    }
-}
-
-.dark-link-color {
-    color: $dark-link-color;
-
-    &:hover {
-        color: $dark-link-color-light;
-    }
-
-    &:active {
-        color: $dark-link-color-light;
-    }
-}
-
-.custom-container {
-    transition: 0.25s;
 }
 
 .error-container {

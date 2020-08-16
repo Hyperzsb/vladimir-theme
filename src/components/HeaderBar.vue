@@ -1,16 +1,15 @@
 <template>
     <b-navbar tag="header" toggleable="md" sticky
-              class="custom-navbar" :class="navbarClass">
-        <b-navbar-brand href="/" :active="true" tag="h1"
-                        class="custom-nav-brand" :class="navBrandColorClass">
+              class="custom-navbar transition-25" :class="headerBarClass">
+        <b-navbar-brand href="/" :active="true" tag="h1">
             <img v-if="config.header.logo" :src="config.project.logo" :title="$t('messages.project.name')"
                  class="custom-nav-logo">
-            <b v-if="config.header.name">{{ $t('messages.project.name') }}</b>
+            <b v-if="config.header.name" class="transition-25 link-color">{{ $t('messages.project.name') }}</b>
         </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse">
             <template v-slot:default="{ expanded }">
-                <b-icon v-if="expanded" icon="chevron-bar-up" :class="iconColorClass"></b-icon>
-                <b-icon v-else icon="chevron-bar-down" :class="iconColorClass"></b-icon>
+                <b-icon v-if="expanded" icon="chevron-bar-up" class="icon-color"></b-icon>
+                <b-icon v-else icon="chevron-bar-down" class="icon-color"></b-icon>
             </template>
         </b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
@@ -45,7 +44,7 @@
                     <b-nav-item-dropdown v-if="config.header.lang" right no-caret
                                          class="pb-1 pt-1 mr-3 mr-md-2 d-inline-block">
                         <template v-slot:button-content>
-                            <b-icon icon="globe2" class="custom-icon" :class="iconColorClass"></b-icon>
+                            <b-icon icon="globe2" class="transition-25 icon-color"></b-icon>
                         </template>
                         <b-dropdown-item v-for="(lang, index) in config.lang" :key="index"
                                          @click="changeLanguage(lang.abbr)">
@@ -54,8 +53,7 @@
                     </b-nav-item-dropdown>
                     <b-nav-item v-if="config.header.theme" :title="themeButtonText"
                                 class="pb-1 pt-1 mr-2 d-inline-block">
-                        <b-icon :icon="themeIcon" class="custom-icon" :class="iconColorClass"
-                                @click="onThemeChange()">
+                        <b-icon :icon="themeIcon" class="transition-25 icon-color" @click="onThemeChange()">
                         </b-icon>
                     </b-nav-item>
                 </div>
@@ -68,6 +66,23 @@
 
 import {mapState, mapMutations} from 'vuex'
 
+function loadStylesheet(url) {
+    let head = document.getElementsByTagName('head')[0];
+    let link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = url;
+    link.setAttribute('name', 'theme-stylesheet');
+    head.appendChild(link);
+}
+
+function removeStylesheet() {
+    let head = document.getElementsByTagName('head')[0];
+    for (let i = 0; i < head.children.length; i++)
+        if (head.children[i].tagName === 'LINK' && head.children[i].getAttribute('name') === 'theme-stylesheet')
+            head.removeChild(head.children[i]);
+}
+
 export default {
     name: "HeaderBar",
     data() {
@@ -76,55 +91,16 @@ export default {
         }
     },
     computed: {
-        navbarClass: function () {
-            if (this.isScrolled) {
-                if (this.theme === 'default')
-                    return {
-                        'default-shadow-color': true,
-                        'default-bg-color-before': false,
-                        'default-bg-color-after': true
-                    };
-                else
-                    return {
-                        'dark-shadow-color': true,
-                        'dark-bg-color-before': false,
-                        'dark-bg-color-after': true
-                    };
-            } else {
-                if (this.theme === 'default')
-                    return {
-                        'default-shadow-color': false,
-                        'default-bg-color-before': true,
-                        'default-bg-color-after': false
-                    };
-                else
-                    return {
-                        'dark-shadow-color': false,
-                        'dark-bg-color-before': true,
-                        'dark-bg-color-after': false
-                    };
-            }
-
-        },
-        navBrandColorClass: function () {
-            if (this.theme === 'default')
+        headerBarClass: function () {
+            if (this.isScrolled)
                 return {
-                    'default-link-color': true
-                };
+                    'header-shadow-color': true,
+                    'header-after-bg-color': true
+                }
             else
                 return {
-                    'dark-link-color': true
-                };
-        },
-        iconColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-icon-color': true
-                };
-            else
-                return {
-                    'dark-icon-color': true
-                };
+                    'header-before-bg-color': true
+                }
         },
         themeIcon: function () {
             if (this.theme === 'default')
@@ -146,54 +122,23 @@ export default {
     },
     methods: {
         navItemClass: function (index) {
-            if (index === 4) {
-                if (this.theme === 'default')
-                    return {
-                        'custom-button-active': false,
-                        'custom-button-inactive': true,
-                        'default-button-color-active': false,
-                        'default-button-color-inactive': true,
-                    };
-                else
-                    return {
-                        'custom-button-active': false,
-                        'custom-button-inactive': true,
-                        'dark-button-color-active': false,
-                        'dark-button-color-inactive': true,
-                    };
-            }
+            if (index === 4)
+                return {
+                    'custom-button-inactive': true,
+                    'header-button-inactive-color': true,
+                };
 
-            if (this.navItem === index) {
-                if (this.theme === 'default')
-                    return {
-                        'custom-button-active': true,
-                        'custom-button-inactive': false,
-                        'default-button-color-active': true,
-                        'default-button-color-inactive': false,
-                    };
-                else
-                    return {
-                        'custom-button-active': true,
-                        'custom-button-inactive': false,
-                        'dark-button-color-active': true,
-                        'dark-button-color-inactive': false,
-                    };
-            } else {
-                if (this.theme === 'default')
-                    return {
-                        'custom-button-active': false,
-                        'custom-button-inactive': true,
-                        'default-button-color-active': false,
-                        'default-button-color-inactive': true,
-                    };
-                else
-                    return {
-                        'custom-button-active': false,
-                        'custom-button-inactive': true,
-                        'dark-button-color-active': false,
-                        'dark-button-color-inactive': true,
-                    };
-            }
+            if (this.navItem === index)
+                return {
+                    'custom-button-active': true,
+                    'header-button-active-color': true,
+                };
+            else
+                return {
+                    'custom-button-inactive': true,
+                    'header-button-inactive-color': true,
+                };
+
         },
         changeShadow() {
             let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -204,10 +149,13 @@ export default {
             this.$cookies.set('InitialLang', lang, 60 * 60);
         },
         onThemeChange() {
+            removeStylesheet();
             if (this.theme === 'default') {
+                loadStylesheet('css/dark-theme.css');
                 this.changeTheme('dark');
                 this.$cookies.set('InitialTheme', 'dark', 60 * 60);
             } else {
+                loadStylesheet('css/light-theme.css');
                 this.changeTheme('default');
                 this.$cookies.set('InitialTheme', 'default', 60 * 60);
             }
@@ -230,134 +178,20 @@ export default {
 
 <style lang="scss" scoped>
 
-@import "../assets/scss/variables";
-
-.default-bg-color-before {
-    background: rgba(#ffffff, 1);
-}
-
-.dark-bg-color-before {
-    background: rgba($dark-base-color, 1);
-}
-
-.default-bg-color-after {
-    background: rgba($default-base-color, .5);
-}
-
-.dark-bg-color-after {
-    background: rgba($dark-base-color-dark, .5);
-}
-
-.default-shadow-color {
-    box-shadow: 0 10px 20px $default-shadow-color-light;
-}
-
-.dark-shadow-color {
-    box-shadow: 0 10px 20px $dark-shadow-color-light;
-}
-
-.default-link-color {
-    color: $default-link-color;
-
-    &:hover {
-        color: $default-link-color-light;
-    }
-
-    &:active {
-        color: $default-link-color-light;
-    }
-}
-
-.dark-link-color {
-    color: $dark-link-color;
-
-    &:hover {
-        color: $dark-link-color-light;
-    }
-
-    &:active {
-        color: $dark-link-color-light;
-    }
-}
-
-.default-button-color-active {
-    color: $default-link-color-lighter;
-}
-
-.dark-button-color-active {
-    color: $dark-link-color-lighter;
-}
-
-.default-button-color-inactive {
-    color: $default-link-color;
-
-    &:hover {
-        color: $default-link-color-light;
-    }
-
-    &:hover::after {
-        border-bottom-color: $default-link-color-light;
-    }
-}
-
-.dark-button-color-inactive {
-    color: $dark-link-color;
-
-    &:hover {
-        color: $dark-link-color-light;
-    }
-
-    &:hover::after {
-        border-bottom-color: $dark-link-color-light;
-    }
-}
-
-.default-icon-color {
-    color: $default-link-color;
-
-    &:hover {
-        color: $default-link-color-light;
-    }
-
-    &:active {
-        color: $default-link-color-light;
-    }
-}
-
-.dark-icon-color {
-    color: $dark-link-color;
-
-    &:hover {
-        color: $dark-link-color-light;
-    }
-
-    &:active {
-        color: $dark-link-color-light;
-    }
-}
-
-.custom-navbar {
-    transition: 0.25s;
-
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        backdrop-filter: blur(10px);
-        z-index: -1;
-    }
+.custom-navbar:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    backdrop-filter: blur(10px);
+    z-index: -1;
 }
 
 .custom-nav-logo {
     height: 1.8rem;
     margin-right: 1rem;
-}
-
-.custom-nav-brand {
-    transition: 0.25s;
 }
 
 .custom-button {
@@ -407,10 +241,6 @@ export default {
         height: 100%;
         transition: border-color 0.25s ease-out 0.1s, width 0.25s ease-out 0.1s;
     }
-}
-
-.custom-icon {
-    transition: 0.25s;
 }
 
 </style>

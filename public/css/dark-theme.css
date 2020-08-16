@@ -1,0 +1,96 @@
+:root {
+    --base-color: #212529; /* oc-gary-9 */
+    --base-color-dark: #495057; /* oc-gary-7 */
+    --base-color-darker: #adb5bd; /* oc-gary-5 */
+    --shadow-color-light: #495057; /* oc-gary-7 */
+    --shadow-color: #adb5bd; /* oc-gary-5 */
+    --link-color-lighter: #e9ecef; /* oc-gray-2 */
+    --link-color-light: #ced4da; /* oc-gray-4 */
+    --link-color: #868e96; /* oc-gray-6 */
+    --text-color-lighter: #868e96; /* oc-gary-6 */
+    --text-color-light: #ced4da; /* oc-gary-4 */
+    --text-color: #e9ecef; /* oc-gary-2 */
+    --hint-color: #12b886; /* oc-teal-6 */
+    --warning-color: #fab005; /* oc-yellow-6 */
+    --fatal-color: #fa5252; /* oc-red-6 */
+}
+
+.bg-color {
+    background-color: var(--base-color);
+}
+
+.hr-color {
+    background-color: var(--base-color-dark);
+}
+
+.text-color {
+    color: var(--text-color);
+}
+
+.light-text-color {
+    color: var(--text-color-light);
+}
+
+.lighter-text-color {
+    color: var(--text-color-lighter);
+}
+
+.link-color {
+    color: var(--link-color);
+}
+
+.link-color:hover, .link-color:active {
+    color: var(--link-color-light);
+}
+
+.icon-color {
+    color: var(--link-color);
+}
+
+.icon-color:hover, .icon-color:active {
+    color: var(--link-color-light);
+}
+
+.header-before-bg-color {
+    background-color: rgba(var(--base-color), 1);
+}
+
+.header-after-bg-color {
+    background-color: rgba(var(--base-color-dark), .5);
+}
+
+.header-shadow-color {
+    box-shadow: 0 10px 20px var(--shadow-color-light);
+}
+
+.header-button-active-color {
+    color: var(--link-color-lighter);
+}
+
+.header-button-inactive-color {
+    color: var(--link-color);
+}
+
+.header-button-inactive-color:hover {
+    color: var(--link-color-light);
+}
+
+.header-button-inactive-color:hover::after {
+    border-bottom-color: var(--link-color-light);
+}
+
+.footer-shadow-color {
+    box-shadow: 0 -10px 20px var(--shadow-color-light);
+}
+
+.footer-border-color {
+    border-top: var(--base-color-dark) 1px solid;
+}
+
+.overview-card-pseudo-color:before, .overview-card-pseudo-color:after {
+    background-color: var(--text-color-lighter);
+}
+
+.about-list-color {
+    background-color: var(--base-color-dark);
+}

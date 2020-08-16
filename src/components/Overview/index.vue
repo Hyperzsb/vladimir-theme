@@ -1,13 +1,13 @@
 <template>
-    <b-container tag="section" fluid class="custom-container" :class="containerColorClass">
+    <b-container tag="section" fluid class="transition-25 bg-color">
         <b-row class="pb-4 pb-md-0">
             <b-col cols="12">
                 <b-row align-v="center" class="jumbotron-logo-row">
                     <b-col cols="12" md="5" offset-md="2" order="2" order-md="1">
-                        <h1 class="jumbotron-name colorful-text" :class="mainTextColorClass">
+                        <h1 class="jumbotron-name colorful-text text-color">
                             {{ $t('messages.project.name') }}
                         </h1>
-                        <h5 class="jumbotron-description" :class="subTextColorClass">
+                        <h5 class="jumbotron-description light-text-color">
                             {{ $t('messages.project.description.main') }}
                         </h5>
                         <b-badge pill class="jumbotron-version">{{ config.project.version }}</b-badge>
@@ -33,33 +33,33 @@
                 </b-row>
             </b-col>
         </b-row>
-        <hr class="custom-hr" :class="hrColorClass"/>
+        <hr class="custom-hr hr-color"/>
         <b-row class="pt-3 pt-md-4 pb-3">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
-                <h3 class="custom-section-title" :class="mainTextColorClass">
+                <h3 class="custom-section-title text-color">
                     {{ $t('messages.components.overview.whatIs') }}
                     <span class="colorful-text">{{ $t('messages.project.name') }}</span>
                 </h3>
-                <div class="custom-section-text" :class="subTextColorClass">
+                <div class="custom-section-text light-text-color">
                     {{ $t('messages.project.description.details') }}
                 </div>
             </b-col>
         </b-row>
-        <hr class="custom-hr" :class="hrColorClass"/>
+        <hr class="custom-hr hr-color"/>
         <b-row class="pt-3 pt-md-4 pb-5 pb-md-3">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
-                <h3 class="custom-section-title" :class="mainTextColorClass">
+                <h3 class="custom-section-title text-color">
                     {{ $t('messages.components.overview.whyIs') }}
                     <span class="colorful-text">{{ $t('messages.project.name') }}</span>
                 </h3>
                 <b-card-group deck>
                     <b-card v-for="(feature, index) in config.project.description.features" :key="index" no-body
-                            class="custom-card" :class="cardColorClass">
+                            class="custom-card overview-card-pseudo-color">
                         <b-card-body>
-                            <b-card-title class="custom-card-title" :class="mainTextColorClass">
+                            <b-card-title class="custom-card-title text-color">
                                 {{ $t(`messages.project.description.features[${index}].name`) }}
                             </b-card-title>
-                            <b-card-text class="custom-card-text" :class="subTextColorClass">
+                            <b-card-text class="custom-card-text light-text-color">
                                 {{ $t(`messages.project.description.features[${index}].details`) }}
                             </b-card-text>
                         </b-card-body>
@@ -67,10 +67,10 @@
                 </b-card-group>
             </b-col>
         </b-row>
-        <hr class="custom-hr" :class="hrColorClass"/>
+        <hr class="custom-hr hr-color"/>
         <b-row class="pt-3 pt-md-4 pb-5">
             <b-col cols="12" md="8" offset-md="2" class="text-center">
-                <h3 class="custom-section-title" :class="mainTextColorClass">
+                <h3 class="custom-section-title text-color">
                     {{ $t('messages.components.overview.getStartNow') }}
                 </h3>
                 <b-button v-if="config.components.demo.self" to="/demo"
@@ -101,59 +101,8 @@ export default {
             else
                 return '/documentation';
         },
-        containerColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-container-color': true
-                };
-            else
-                return {
-                    'dark-container-color': true
-                };
-        },
-        hrColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-hr-color': true
-                };
-            else
-                return {
-                    'dark-hr-color': true
-                };
-        },
-        mainTextColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-text-color-main': true
-                };
-            else
-                return {
-                    'dark-text-color-main': true
-                };
-        },
-        subTextColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-text-color-sub': true
-                };
-            else
-                return {
-                    'dark-text-color-sub': true
-                };
-        },
-        cardColorClass: function () {
-            if (this.theme === 'default')
-                return {
-                    'default-card-color': true
-                };
-            else
-                return {
-                    'dark-card-color': true
-                };
-        },
         ...mapState([
-            'config',
-            'theme'
+            'config'
         ])
     },
     methods: {
@@ -173,56 +122,16 @@ export default {
 
 <style lang="scss" scoped>
 
-@import "src/assets/scss/variables";
-
-.default-container-color {
-    background-color: #ffffff;
-}
-
-.dark-container-color {
-    background-color: $dark-base-color;
-}
-
-.default-hr-color {
-    background-color: $default-base-color-dark;
-}
-
-.dark-hr-color {
-    background-color: $dark-base-color-darker;
-}
-
-.default-text-color-main {
-    color: $default-text-color;
-}
-
-.dark-text-color-main {
-    color: $dark-text-color;
-}
-
-.default-text-color-sub {
-    color: $default-text-color-light;
-}
-
-.dark-text-color-sub {
-    color: $dark-text-color-light;
-}
-
-.default-card-color::before, ::after {
-    background-color: $default-text-color-lighter;
-}
-
-.dark-card-color::before, ::after {
-    background-color: $dark-text-color-lighter;
+@mixin mobile {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
 }
 
 .colorful-text {
     background: linear-gradient(to right, #7928CA, #FF0080);
     -webkit-background-clip: text;
     color: transparent;
-}
-
-.custom-container {
-    transition: 0.25s;
 }
 
 .custom-hr {

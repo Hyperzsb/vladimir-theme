@@ -10,7 +10,7 @@ Currently includes:
 - About page (*WIP*)
 - **Fully Markdown rendering support**
 - **Localization** (maybe some refactor or optimization in the future)
-- **Color themes** (maybe some refactor or optimization in the future)
+- **Color themes**
   - Default theme (Light theme)
   - Dark theme 
 

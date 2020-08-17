@@ -4,9 +4,11 @@
   }
 }
 
-code {
-  padding: 0 0.2rem;
-  margin: 0 0.2rem;
+// General style setting
+
+* {
+  font-family: source-han-serif-sc, serif;
+  font-style: normal;
 }
 
 // General style class
@@ -191,6 +193,8 @@ code {
   vertical-align: super;
 }
 
+// Markdown code style setting
+
 .markdown-block-code {
   margin: 1.5rem 0;
   border-radius: 7px;
@@ -203,6 +207,11 @@ code {
 
 pre.hljs {
   padding: 0;
+}
+
+code {
+  padding: 0 0.2rem;
+  margin: 0 0.2rem;
 }
 
 code.hljs {

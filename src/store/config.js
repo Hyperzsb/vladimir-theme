@@ -1,48 +1,53 @@
 const config = {
     project: {
         name: {
-            en: 'Demo Project',
-            zh: '样例项目'
+            en: 'Vladimir',
+            zh: '弗拉基米尔'
         },
         logo: require('@/assets/img/logo.png'),
-        github: 'https://github.com',
-        version: 'v1.0.0',
+        github: 'https://github.com/Hyperzsb/vladimir-theme',
+        version: 'v1.1.0',
         description: {
             main: {
-                en: 'Main description of the demo project. It should be short. It had better be less than one hundred characters.',
-                zh: '演示项目的主要描述。它应该简短。最好不要超过100个字。'
+                en: 'A general, multifunctional and easy-to-use Vue.js based web theme to present your project and your code.',
+                zh: '一个通用的、多功能的、易于使用的基于 Vue.js 的 web 主题，用于表示您的项目和代码。'
             },
             details: {
-                en: 'Detailed description of the demo project. This section allows much longer text and maybe some pictures. ' +
-                    'Characters here ought to be no less than five hundred.',
-                zh: '演示项目的详细描述。这个部分允许更长的文本和一些图片。这里的字符应该不少于500个。'
+                en: 'The goal of this project is to simplify the presentation and promotion process of various projects, and to deliver your desired products faster and better.' +
+                    'The original purpose of this project was to showcase Hyperzsb\'s personal projects and code, ' +
+                    'of course, as an open source software, Vladimir welcomes all types of personal or commercial use under the MIT license.',
+                zh: '该项目旨在简化各类项目的展示和宣传流程，更快、更好地发布您心仪的产品。这个项目的初衷是展示 Hyperzsb 的个人项目及代码，' +
+                    '当然作为开源软件，弗拉基米尔欢迎各类遵循 MIT 许可的个人或商业使用。'
             },
             features: [{
                 name: {
-                    en: 'Feature One',
-                    zh: '特性一'
+                    en: 'Joyful',
+                    zh: '使用更简单'
                 },
                 details: {
-                    en: 'Details for Feature One. It should be somewhat longer, but not longer than two hundred characters.',
-                    zh: '特性一的详细信息。它应该稍微长一点，但不超过200个字符。'
+                    en: 'Thanks to the powerful features of Vue.js and its plugins, ' +
+                        'you can configure and publish your website in half an hour by modifying and uploading just one or two files.',
+                    zh: '得益于 Vue.js 的及其组件强大特性，您可以通过修改、上传仅仅一两个文件便可以在半小时之内配置并发布您的网站。'
                 }
             }, {
                 name: {
-                    en: 'Feature Two',
-                    zh: '特性二'
+                    en: 'Powerful',
+                    zh: '功能更强大'
                 },
                 details: {
-                    en: 'Details for Feature Two. Maybe there are some pictures will be better.',
-                    zh: '特性二的详细信息。也许有一些图片会更好。'
+                    en: 'This template supports multiple project presentation plates, each of which supports Markdown rendering. ' +
+                        'At the same time, experienced vue. js engineers can also develop custom plates.',
+                    zh: '该模板支持多个项目展示板块，且各板块均支持 Markdown 渲染。同时，有经验的 Vue.js 工程师还可以开发自定义的板块。'
                 }
             }, {
                 name: {
-                    en: 'Feature Three',
-                    zh: '特性三'
+                    en: 'Beautiful',
+                    zh: '界面更美观'
                 },
                 details: {
-                    en: 'Details for Feature Three. How can the cards layout as the same height?',
-                    zh: '特性三的细节。怎样才能使卡片的布局达到同样的高度？'
+                    en: 'After drawing on some of the best web design work, we present you with a more concise and flat technology scroll. ' +
+                        'Responding and multiterminal adaptation let your ideas have no device boundary.',
+                    zh: '在借鉴了若干卓越的网页设计作品后，给您呈现一幅更间约、更扁平的科技图卷。自适应和多端适配让您的想法没有设备的边界。'
                 }
             }]
         },
@@ -58,58 +63,46 @@ const config = {
         logo: true,
         linkListLeft: {
             title: {
-                en: 'List Left',
-                zh: '左列表'
+                en: 'Resources',
+                zh: '相关资源'
             },
             links: [{
                 name: {
-                    en: 'Link One',
-                    zh: '链接一'
+                    en: 'Vue.js',
+                    zh: 'Vue.js'
                 },
-                href: '#'
+                href: 'https://vuejs.org/'
             }, {
                 name: {
-                    en: 'Link Two',
-                    zh: '链接二'
+                    en: 'BootstrapVue',
+                    zh: 'BootstrapVue'
                 },
-                href: '#'
+                href: 'https://bootstrap-vue.org/'
             }, {
                 name: {
-                    en: 'Link Three',
-                    zh: '链接三'
+                    en: 'markdown-it',
+                    zh: 'markdown-it'
                 },
-                href: '#'
-            }, {
-                name: {
-                    en: 'Link Four',
-                    zh: '链接四'
-                },
-                href: '#'
+                href: 'https://github.com/markdown-it/markdown-it/'
             }]
         },
         linkListRight: {
             title: {
-                en: 'List Right',
-                zh: '右列表'
+                en: 'About Me',
+                zh: '关于我'
             },
             links: [{
                 name: {
-                    en: 'Link One',
-                    zh: '链接一'
+                    en: 'My GitHub',
+                    zh: '我的 GitHub'
                 },
-                href: '#'
+                href: 'https://github.com/Hyperzsb/'
             }, {
                 name: {
-                    en: 'Link Two',
-                    zh: '链接二'
+                    en: 'My Blog',
+                    zh: '我的博客'
                 },
-                href: '#'
-            }, {
-                name: {
-                    en: 'Link Three',
-                    zh: '链接三'
-                },
-                href: '#'
+                href: 'https://blog.hyperzsb.tech/'
             }]
         },
         recordText: ''
@@ -133,52 +126,22 @@ const config = {
             scrollToTop: true,
             members: [{
                 name: {
-                    en: 'Member One',
-                    zh: '成员一'
+                    en: 'Hyperzsb',
+                    zh: 'Hyperzsb'
                 },
                 description: {
-                    en: 'Some description for member one.',
-                    zh: '对成员一的一些描述。'
+                    en: 'That\'s right, it\'s me, and only me right now.',
+                    zh: '没错，这就是我，而且目前只有我。'
                 },
                 headPortrait: null
             }, {
                 name: {
-                    en: 'Member Two',
-                    zh: '成员二'
+                    en: 'More members...',
+                    zh: '还可以有更多成员......'
                 },
                 description: {
-                    en: 'Some description for member two.',
-                    zh: '对成员二的一些描述。'
-                },
-                headPortrait: null
-            }, {
-                name: {
-                    en: 'Member Three',
-                    zh: '成员三'
-                },
-                description: {
-                    en: 'Some description for member three.',
-                    zh: '对成员三的一些描述。'
-                },
-                headPortrait: null
-            }, {
-                name: {
-                    en: 'Member Four',
-                    zh: '成员四'
-                },
-                description: {
-                    en: 'Some description for member four.',
-                    zh: '对成员四的一些描述。'
-                },
-                headPortrait: null
-            }, {
-                name: {
-                    en: 'Member Five',
-                    zh: '成员五'
-                },
-                description: {
-                    en: 'Some description for member five.',
-                    zh: '对成员五的一些描述。'
+                    en: 'Waiting for someone.',
+                    zh: '等风来。'
                 },
                 headPortrait: null
             }]

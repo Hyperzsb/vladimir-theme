@@ -142,7 +142,12 @@ export default {
             this.isScrolled = scrollTop > 10;
         },
         changeLanguage(lang) {
+            // Change Language
             this.$i18n.locale = lang;
+            // Change page title
+            let title = document.getElementsByTagName('title')[0];
+            title.innerHTML = this.$t('messages.project.name');
+            // Update cookies
             this.$cookies.set('InitialLang', lang, 60 * 60);
         },
         onThemeChange() {
@@ -162,6 +167,10 @@ export default {
         ...mapMutations([
             'changeTheme'
         ])
+    },
+    created() {
+        let title = document.getElementsByTagName('title')[0];
+        title.innerHTML = this.$t('messages.project.name');
     },
     mounted() {
         window.addEventListener('scroll', this.changeShadow);

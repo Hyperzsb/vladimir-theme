@@ -83,7 +83,7 @@
                                 MIT
                             </b-link>
                             <div v-if="config.footer.recordText" class="pt-3">
-                                <b-link href="https://blog.hyperzsb.tech/www.beian.miit.gov.cn"
+                                <b-link href="https://beian.miit.gov.cn"
                                         class="custom-link link-color">
                                     {{ config.footer.recordText }}
                                 </b-link>

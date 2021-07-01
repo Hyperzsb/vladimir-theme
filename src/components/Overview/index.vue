@@ -83,7 +83,7 @@
                 </b-button>
             </b-col>
         </b-row>
-        <side-toolbar scroll-to-top/>
+        <side-toolbar v-if="config.components.overview.scrollToTop" scroll-to-top/>
     </b-container>
 </template>
 
